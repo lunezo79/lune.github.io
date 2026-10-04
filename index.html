@@ -45,26 +45,16 @@
 
   <header class="site-header" data-header>
     <div class="container site-header__inner">
-      <div class="site-header__start">
-        <a class="brand" href="#top" aria-label="Lune — back to top">
-          <img
-            class="brand__mark"
-            src="assets/icons/favicon.svg"
-            alt=""
-            width="32"
-            height="32"
-            decoding="async"
-          />
-          <span class="brand__name">lune<span class="brand__dot">.</span></span>
-        </a>
-
-        <span class="moon-phase" data-moon-phase role="img" aria-label="Moon phase">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle class="moon-phase__disc" cx="12" cy="12" r="10" />
-            <path class="moon-phase__light" data-moon-light />
-          </svg>
-        </span>
-
+      <div class="site-header__tools">
+        <img
+          class="site-header__avatar"
+          src="assets/icons/favicon.svg"
+          alt=""
+          width="36"
+          height="36"
+          decoding="async"
+          data-discord-avatar
+        />
         <details class="site-settings" data-settings>
           <summary class="site-settings__toggle">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -82,14 +72,14 @@
               <option value="rose">Rose pink</option>
               <option value="amber">Amber glow</option>
             </select>
-            <button class="site-settings__audio" type="button" data-music-toggle aria-pressed="false">
-              Play calm lo-fi
+            <button class="site-settings__audio" type="button" data-music-toggle aria-pressed="true">
+              Mute calm lo-fi
             </button>
-            <button class="site-settings__audio" type="button" data-sounds-toggle aria-pressed="false">
-              Enable UI sounds
+            <button class="site-settings__audio" type="button" data-sounds-toggle aria-pressed="true">
+              Mute UI sounds
             </button>
             <p class="site-settings__status" data-settings-status aria-live="polite">
-              Music and UI sounds are off.
+              Calm lo-fi and UI sounds start after your first interaction.
             </p>
           </div>
         </details>
@@ -97,10 +87,17 @@
 
       <nav class="nav" id="primary-nav" data-nav aria-label="Primary">
         <ul class="nav__list">
-          <li><a class="nav__link" href="#about" data-nav-link>About me</a></li>
-          <li><a class="nav__link" href="#three-d" data-nav-link>3D</a></li>
-          <li><a class="nav__link" href="#partners" data-nav-link>Partners</a></li>
-          <li><a class="nav__link" href="#contact" data-nav-link>Contact</a></li>
+          <li class="nav__group nav__group--left">
+            <a class="nav__link" href="#three-d" data-nav-link>3D</a>
+          </li>
+          <li class="nav__group nav__group--center">
+            <a class="nav__link nav__link--menu" href="#top" data-nav-link>Menu</a>
+          </li>
+          <li class="nav__group nav__group--right">
+            <a class="nav__link" href="#about" data-nav-link>About me</a>
+            <a class="nav__link" href="#partners" data-nav-link>Partners</a>
+            <a class="nav__link" href="#contact" data-nav-link>Contact</a>
+          </li>
         </ul>
       </nav>
 
@@ -132,14 +129,11 @@
           <div class="hero__copy">
             <p class="pill" data-reveal>
               <span class="pill__dot"></span>
-              Creating, learning, and exploring
+              Roblox game developer
             </p>
             <h1 class="hero__title" data-reveal>
-              Hi, I'm Lune.
-              <em>
-                I shape <span class="text-gradient">visual worlds</span> and the
-                interfaces within them.
-              </em>
+              I am a young up and coming Roblox game dev.
+              <em>Welcome to my portfolio</em>
             </h1>
             <div class="hero__actions" data-reveal>
               <a class="btn btn--primary" href="#three-d">
@@ -190,11 +184,17 @@
           <article class="discord-card discord-card--hero" data-discord-card data-user-id="762121502698242054" data-reveal>
             <div class="discord-card__heading">
               <div class="discord-card__identity">
-                <span class="discord-card__avatar" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M15.9 2.4a9.1 9.1 0 1 0 4 14.3 7.6 7.6 0 0 1-4-14.3Z"/></svg>
-                </span>
+                <img
+                  class="discord-card__avatar"
+                  src="assets/icons/favicon.svg"
+                  alt=""
+                  width="52"
+                  height="52"
+                  decoding="async"
+                  data-discord-avatar
+                />
                 <div>
-                  <p class="discord-card__label">Discord presence</p>
+                  <p class="discord-card__label">My Activity</p>
                   <h2 class="discord-card__name" data-discord-name>Lune</h2>
                 </div>
               </div>
@@ -203,12 +203,19 @@
                 <span data-discord-status aria-live="polite">Connecting to Discord…</span>
               </span>
             </div>
-            <p class="discord-card__activity" data-discord-activity aria-live="polite">
-              Loading current activity…
-            </p>
-            <p class="discord-card__note">
-              Live Discord activity
-            </p>
+            <div class="discord-activity" data-discord-activity aria-live="polite">
+              <div class="discord-activity__image-wrap" data-activity-image-wrap>
+                <img class="discord-activity__image" alt="" data-activity-image hidden />
+                <span class="discord-activity__image-fallback" data-activity-fallback aria-hidden="true">◈</span>
+              </div>
+              <div class="discord-activity__content">
+                <p class="discord-activity__verb" data-activity-verb>Loading activity…</p>
+                <h3 class="discord-activity__name" data-activity-name>Connecting to Discord</h3>
+                <p class="discord-activity__details" data-activity-details></p>
+                <p class="discord-activity__elapsed" data-activity-elapsed></p>
+              </div>
+            </div>
+            <p class="discord-card__note">Live Discord activity</p>
           </article>
         </div>
       </div>

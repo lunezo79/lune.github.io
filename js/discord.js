@@ -1,4 +1,5 @@
 const REFRESH_INTERVAL = 60_000;
+const TIMER_INTERVAL = 1_000;
 const STATUS_LABELS = {
   online: "Online",
   idle: "Idle",
@@ -12,6 +13,7 @@ const ACTIVITY_VERBS = {
   3: "Watching",
   5: "Competing in",
 };
+const DEFAULT_ACTIVITY_IMAGE = "assets/icons/favicon.svg";
 
 export function initDiscordActivity() {
   const card = document.querySelector("[data-discord-card]");
@@ -21,12 +23,52 @@ export function initDiscordActivity() {
   const name = card.querySelector("[data-discord-name]");
   const status = card.querySelector("[data-discord-status]");
   const dot = card.querySelector("[data-discord-dot]");
-  const activity = card.querySelector("[data-discord-activity]");
+  const verb = card.querySelector("[data-activity-verb]");
+  const activityName = card.querySelector("[data-activity-name]");
+  const details = card.querySelector("[data-activity-details]");
+  const elapsed = card.querySelector("[data-activity-elapsed]");
+  const activityImage = card.querySelector("[data-activity-image]");
+  const imageFallback = card.querySelector("[data-activity-fallback]");
+  const avatarImages = document.querySelectorAll("[data-discord-avatar]");
+  let activityStart = null;
 
   if (!userId || !/^\d+$/.test(userId)) {
-    showError(status, dot, activity, new Error("Discord user ID is missing or invalid."));
+    showError(status, dot, verb, activityName, details, elapsed, new Error("Discord user ID is missing or invalid."));
     return;
   }
+
+  const renderElapsed = () => {
+    if (!activityStart) {
+      elapsed.textContent = "";
+      return;
+    }
+
+    const seconds = Math.max(0, Math.floor((Date.now() - activityStart) / 1000));
+    const hours = Math.floor(seconds / 3600).toString().padStart(2, "0");
+    const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, "0");
+    const remainder = (seconds % 60).toString().padStart(2, "0");
+    elapsed.textContent = `${hours}:${minutes}:${remainder} elapsed`;
+  };
+
+  const setActivityImage = (url) => {
+    if (!url) {
+      activityImage.hidden = true;
+      activityImage.removeAttribute("src");
+      imageFallback.hidden = false;
+      return;
+    }
+
+    activityImage.onload = () => {
+      activityImage.hidden = false;
+      imageFallback.hidden = true;
+    };
+    activityImage.onerror = () => {
+      activityImage.hidden = true;
+      activityImage.removeAttribute("src");
+      imageFallback.hidden = false;
+    };
+    activityImage.src = url;
+  };
 
   const update = async () => {
     try {
@@ -41,45 +83,85 @@ export function initDiscordActivity() {
       }
 
       const data = result.data;
-      const displayName = data.discord_user?.global_name || data.discord_user?.username;
+      const discordUser = data.discord_user || {};
+      const displayName = discordUser.global_name || discordUser.username;
       if (displayName) name.textContent = displayName;
+
+      if (discordUser.id && discordUser.avatar) {
+        const extension = discordUser.avatar.startsWith("a_") ? "gif" : "png";
+        const avatarUrl = `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.${extension}?size=128`;
+        avatarImages.forEach((image) => {
+          image.onerror = () => {
+            image.src = DEFAULT_ACTIVITY_IMAGE;
+          };
+          image.src = avatarUrl;
+        });
+      }
 
       const discordStatus = data.discord_status || "offline";
       status.textContent = STATUS_LABELS[discordStatus] || "Status unavailable";
       dot.dataset.status = STATUS_LABELS[discordStatus] ? discordStatus : "unknown";
-      activity.textContent = getActivityText(data);
+      renderActivity(data);
+      renderElapsed();
     } catch (error) {
-      showError(status, dot, activity, error);
+      showError(status, dot, verb, activityName, details, elapsed, error);
+    }
+  };
+
+  const renderActivity = (data) => {
+    const spotify = data.spotify;
+    const activities = Array.isArray(data.activities) ? data.activities : [];
+    const current = spotify
+      ? null
+      : activities.find((item) => item.name && item.type !== 4);
+
+    if (spotify) {
+      verb.textContent = "Listening to Spotify";
+      activityName.textContent = spotify.song || "Spotify";
+      details.textContent = [spotify.artist, spotify.album].filter(Boolean).join(" · ");
+      activityStart = Number(spotify.timestamps?.start) || null;
+      setActivityImage(spotify.album_art_url || null);
+    } else if (current) {
+      verb.textContent = ACTIVITY_VERBS[current.type] || "Using";
+      activityName.textContent = current.name;
+      details.textContent = [current.details, current.state].filter(Boolean).join(" · ");
+      activityStart = Number(current.timestamps?.start) || null;
+      setActivityImage(getActivityImageUrl(current));
+    } else {
+      const customStatus = activities.find((item) => item.type === 4 && item.state);
+      verb.textContent = "Current activity";
+      activityName.textContent = customStatus?.state || "No activity shared right now";
+      details.textContent = data.discord_status === "offline" ? "Offline" : "";
+      activityStart = null;
+      setActivityImage(null);
     }
   };
 
   void update();
   window.setInterval(() => void update(), REFRESH_INTERVAL);
+  window.setInterval(renderElapsed, TIMER_INTERVAL);
 }
 
-function getActivityText(data) {
-  const activities = Array.isArray(data.activities) ? data.activities : [];
-  const current = activities.find((item) => item.name && item.type !== 4);
-
-  if (current) {
-    if (current.type === 2 && current.name.toLowerCase() === "spotify") {
-      return "Listening to Spotify";
-    }
-
-    const verb = ACTIVITY_VERBS[current.type] || "Using";
-    const description = [current.details, current.state].filter(Boolean).join(" · ");
-    return `${verb} ${current.name}${description ? ` — ${description}` : ""}`;
+function getActivityImageUrl(activity) {
+  const image = activity.assets?.large_image;
+  if (!image) return null;
+  if (image.startsWith("https://")) return image;
+  if (image.startsWith("mp:")) {
+    return `https://media.discordapp.net/${image.slice(3)}`;
   }
-
-  const customStatus = activities.find((item) => item.type === 4 && item.state);
-  if (customStatus) return `Custom status: ${customStatus.state}`;
-  if (data.discord_status === "offline") return "No activity while offline.";
-  return "No activity shared right now.";
+  if (image.startsWith("spotify:")) {
+    return `https://i.scdn.co/image/${image.slice("spotify:".length)}`;
+  }
+  if (!activity.application_id) return null;
+  return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${image}.png?size=128`;
 }
 
-function showError(status, dot, activity, error) {
+function showError(status, dot, verb, activityName, details, elapsed, error) {
   status.textContent = "Unavailable";
   dot.dataset.status = "unknown";
-  activity.textContent = "Discord activity couldn't be loaded. Try again soon.";
+  verb.textContent = "Current activity";
+  activityName.textContent = "Discord activity unavailable";
+  details.textContent = "Try again soon.";
+  elapsed.textContent = "";
   console.warn("Unable to load Discord activity:", error);
 }

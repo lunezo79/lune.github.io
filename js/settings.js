@@ -1,17 +1,6 @@
 const THEME_KEY = "lune-theme";
+const AUDIO_KEY = "lune-audio";
 const THEMES = new Set(["default", "ocean", "forest", "rose", "amber"]);
-const SYNODIC_MONTH_DAYS = 29.530588853;
-const REFERENCE_NEW_MOON = Date.UTC(2000, 0, 6, 18, 14);
-const PHASE_NAMES = [
-  "New moon",
-  "Waxing crescent",
-  "First quarter",
-  "Waxing gibbous",
-  "Full moon",
-  "Waning gibbous",
-  "Last quarter",
-  "Waning crescent",
-];
 const CHORDS = [
   [130.81, 164.81, 196, 233.08],
   [110, 130.81, 164.81, 196],
@@ -34,11 +23,37 @@ export function initSettings() {
   let musicTimer = null;
   let musicStep = 0;
   let nextMusicTime = 0;
-  let musicEnabled = false;
-  let soundsEnabled = false;
+  let audioStarted = false;
+  const preferences = readAudioPreferences();
+  let musicEnabled = preferences.music;
+  let soundsEnabled = preferences.sounds;
 
   const setStatus = (message) => {
     status.textContent = message;
+  };
+
+  const updateAudioControls = () => {
+    musicToggle.setAttribute("aria-pressed", String(musicEnabled));
+    musicToggle.textContent = musicEnabled ? "Mute calm lo-fi" : "Play calm lo-fi";
+    soundsToggle.setAttribute("aria-pressed", String(soundsEnabled));
+    soundsToggle.textContent = soundsEnabled ? "Mute UI sounds" : "Enable UI sounds";
+    if (!musicEnabled && !soundsEnabled) {
+      setStatus("Music and UI sounds are off.");
+    } else if (!audioStarted) {
+      setStatus("Calm lo-fi and UI sounds start after your first interaction.");
+    } else {
+      setStatus(
+        `${musicEnabled ? "Calm lo-fi is on" : "Music is off"}; UI sounds are ${soundsEnabled ? "on" : "off"}.`
+      );
+    }
+  };
+
+  const saveAudioPreferences = () => {
+    try {
+      localStorage.setItem(AUDIO_KEY, JSON.stringify({ music: musicEnabled, sounds: soundsEnabled }));
+    } catch (error) {
+      console.warn("Could not save audio preferences.", error);
+    }
   };
 
   const getAudioContext = () => {
@@ -82,34 +97,15 @@ export function initSettings() {
   setTheme(savedTheme);
   themeSelect.addEventListener("change", () => setTheme(themeSelect.value));
 
-  const updateMoonPhase = () => {
-    const moon = document.querySelector("[data-moon-phase]");
-    const light = document.querySelector("[data-moon-light]");
-    if (!moon || !light) return;
-
-    const lunarDays = ((Date.now() - REFERENCE_NEW_MOON) / 86400000) % SYNODIC_MONTH_DAYS;
-    const phase = (lunarDays + SYNODIC_MONTH_DAYS) % SYNODIC_MONTH_DAYS / SYNODIC_MONTH_DAYS;
-    const illuminated = (1 - Math.cos(phase * Math.PI * 2)) / 2;
-    const waxing = phase < 0.5;
-    const terminatorRadius = Math.abs(Math.cos(illuminated * Math.PI)) * 10;
-    const outerSweep = waxing ? 1 : 0;
-    const innerSweep = waxing ? Number(illuminated > 0.5) : Number(illuminated <= 0.5);
-    const phaseName = PHASE_NAMES[Math.floor((phase + 0.0625) % 1 * PHASE_NAMES.length)];
-
-    light.setAttribute(
-      "d",
-      `M 12 2 A 10 10 0 0 ${outerSweep} 12 22 A ${terminatorRadius.toFixed(3)} 10 0 0 ${innerSweep} 12 2 Z`
-    );
-    moon.setAttribute(
-      "aria-label",
-      `Moon phase tonight: ${phaseName}, ${Math.round(illuminated * 100)}% illuminated`
-    );
-    moon.setAttribute("title", moon.getAttribute("aria-label"));
-  };
-  updateMoonPhase();
-  window.setInterval(updateMoonPhase, 60 * 60 * 1000);
-
-  const playTone = (frequency, time, duration, volume, endFrequency = frequency, type = "sine") => {
+  const playTone = (
+    frequency,
+    time,
+    duration,
+    volume,
+    endFrequency = frequency,
+    type = "sine",
+    output = musicMaster || audioContext.destination
+  ) => {
     if (!audioContext) return;
     const oscillator = audioContext.createOscillator();
     const gain = audioContext.createGain();
@@ -120,7 +116,7 @@ export function initSettings() {
     gain.gain.linearRampToValueAtTime(volume, time + Math.min(0.025, duration / 3));
     gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
     oscillator.connect(gain);
-    gain.connect(musicMaster || audioContext.destination);
+    gain.connect(output);
     oscillator.start(time);
     oscillator.stop(time + duration + 0.01);
     oscillator.addEventListener("ended", () => {
@@ -173,7 +169,6 @@ export function initSettings() {
   };
 
   const stopMusic = () => {
-    musicEnabled = false;
     if (musicTimer !== null) {
       window.clearInterval(musicTimer);
       musicTimer = null;
@@ -184,31 +179,28 @@ export function initSettings() {
       window.setTimeout(() => oldMaster.disconnect(), 300);
       musicMaster = null;
     }
-    suspendAudioIfIdle();
+    if (!soundsEnabled) suspendAudioIfIdle();
   };
 
-  musicToggle.addEventListener("click", async () => {
-    if (musicEnabled) {
-      stopMusic();
-      musicToggle.setAttribute("aria-pressed", "false");
-      musicToggle.textContent = "Play calm lo-fi";
-      setStatus(soundsEnabled ? "Music is off; UI sounds are on." : "Music and UI sounds are off.");
-      return;
-    }
+  const startMusic = async () => {
+    if (!musicEnabled || musicMaster) return;
 
     const context = getAudioContext();
     if (!context) {
+      musicEnabled = false;
+      saveAudioPreferences();
+      updateAudioControls();
       setStatus("Background audio is not supported by this browser.");
       return;
     }
 
     try {
       await context.resume();
+      if (!musicEnabled || musicMaster) return;
       musicMaster = context.createGain();
       musicMaster.gain.setValueAtTime(0.0001, context.currentTime);
       musicMaster.gain.setTargetAtTime(0.58, context.currentTime, 0.18);
       musicMaster.connect(context.destination);
-      musicEnabled = true;
       musicStep = 0;
       nextMusicTime = context.currentTime + 0.05;
       const beatDuration = 60 / 78;
@@ -219,56 +211,95 @@ export function initSettings() {
           nextMusicTime += beatDuration;
         }
       }, 25);
-      musicToggle.setAttribute("aria-pressed", "true");
-      musicToggle.textContent = "Mute calm lo-fi";
-      setStatus(soundsEnabled ? "Calm lo-fi is playing; UI sounds are on." : "Calm lo-fi is playing; UI sounds are off.");
     } catch (error) {
       console.error("Could not start the calm lo-fi audio.", error);
       setStatus("The browser could not start audio. Try again after interacting with the page.");
     }
-  });
+  };
 
-  soundsToggle.addEventListener("click", async () => {
-    if (soundsEnabled) {
-      soundsEnabled = false;
-      soundsToggle.setAttribute("aria-pressed", "false");
-      soundsToggle.textContent = "Enable UI sounds";
-      setStatus(musicEnabled ? "Calm lo-fi is playing; UI sounds are off." : "Music and UI sounds are off.");
-      suspendAudioIfIdle();
+  const activateDefaultAudio = async () => {
+    if (audioStarted) return;
+    audioStarted = true;
+
+    if (!musicEnabled && !soundsEnabled) {
+      updateAudioControls();
       return;
     }
 
     const context = getAudioContext();
     if (!context) {
-      setStatus("UI sounds are not supported by this browser.");
+      musicEnabled = false;
+      soundsEnabled = false;
+      updateAudioControls();
+      setStatus("Audio is not supported by this browser.");
       return;
     }
 
     try {
       await context.resume();
-      soundsEnabled = true;
-      soundsToggle.setAttribute("aria-pressed", "true");
-      soundsToggle.textContent = "Mute UI sounds";
-      setStatus(musicEnabled ? "Calm lo-fi and UI sounds are on." : "UI sounds are on; music is off.");
+      if (musicEnabled) await startMusic();
+      updateAudioControls();
     } catch (error) {
-      console.error("Could not enable UI sounds.", error);
-      setStatus("The browser could not enable audio. Try again after interacting with the page.");
+      console.error("Could not activate default audio.", error);
+      setStatus("The browser could not start audio. Try again after interacting with the page.");
     }
+  };
+
+  updateAudioControls();
+  document.addEventListener("pointerdown", () => void activateDefaultAudio(), { once: true, capture: true });
+  document.addEventListener("keydown", () => void activateDefaultAudio(), { once: true, capture: true });
+
+  musicToggle.addEventListener("click", async () => {
+    if (musicEnabled) {
+      musicEnabled = false;
+      stopMusic();
+    } else {
+      musicEnabled = true;
+      await startMusic();
+    }
+    saveAudioPreferences();
+    audioStarted = true;
+    updateAudioControls();
+  });
+
+  soundsToggle.addEventListener("click", async () => {
+    if (soundsEnabled) {
+      soundsEnabled = false;
+      suspendAudioIfIdle();
+    } else {
+      const context = getAudioContext();
+      if (!context) {
+        setStatus("UI sounds are not supported by this browser.");
+        return;
+      }
+
+      try {
+        await context.resume();
+        soundsEnabled = true;
+        audioStarted = true;
+      } catch (error) {
+        console.error("Could not enable UI sounds.", error);
+        setStatus("The browser could not enable audio. Try again after interacting with the page.");
+        return;
+      }
+    }
+    saveAudioPreferences();
+    updateAudioControls();
   });
 
   document.addEventListener("pointerover", (event) => {
-    if (!soundsEnabled || event.pointerType !== "mouse" || event.target.closest("[data-settings]")) return;
+    if (!audioContext || !soundsEnabled || event.pointerType !== "mouse" || event.target.closest("[data-settings]")) return;
     const interactive = event.target.closest("a, button, select, summary");
     if (interactive && !interactive.contains(event.relatedTarget)) {
-      playTone(720, audioContext.currentTime, 0.055, 0.008, 880);
+      playTone(720, audioContext.currentTime, 0.055, 0.008, 880, "sine", audioContext.destination);
     }
   });
 
   document.addEventListener("click", (event) => {
-    if (!soundsEnabled || event.target.closest("[data-settings]")) return;
+    if (!audioContext || !soundsEnabled || event.target.closest("[data-settings]")) return;
     const interactive = event.target.closest("a, button, select, summary");
     if (interactive) {
-      playTone(460, audioContext.currentTime, 0.075, 0.012, 620);
+      playTone(460, audioContext.currentTime, 0.075, 0.012, 620, "sine", audioContext.destination);
     }
   });
 
@@ -286,4 +317,17 @@ export function initSettings() {
   document.addEventListener("pageviewchange", (event) => {
     updateProjectAccent(event.detail.activeView);
   });
+}
+
+function readAudioPreferences() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(AUDIO_KEY) || "null");
+    return {
+      music: saved?.music !== false,
+      sounds: saved?.sounds !== false,
+    };
+  } catch (error) {
+    console.warn("Could not read audio preferences; using audio-on defaults.", error);
+    return { music: true, sounds: true };
+  }
 }

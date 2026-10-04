@@ -21,10 +21,6 @@
   pointer-events: none;
 }
 
-.hero .discord-card__activity {
-  min-height: 3.4em;
-}
-
 .hero__grid {
   position: absolute;
   inset: 0;
@@ -82,9 +78,9 @@
 
 .hero__layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
-  align-items: center;
-  gap: clamp(2rem, 1rem + 5vw, 5rem);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
 }
 
 .hero__copy {
@@ -511,6 +507,10 @@
   letter-spacing: var(--tracking-wide);
   color: var(--text-dim);
   white-space: nowrap;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(8, 7, 11, 0.34);
 }
 
 .timeline__desc {
@@ -700,8 +700,7 @@
   }
 
   .hero__layout {
-    grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
-    gap: var(--space-8);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -837,6 +836,8 @@ a.social-card:hover {
 
 .discord-card--hero {
   position: relative;
+  width: min(100%, 42rem);
+  margin: var(--space-10) auto 0;
   overflow: hidden;
   padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
   border-color: rgba(196, 181, 253, 0.2);
@@ -880,8 +881,8 @@ a.social-card:hover {
 
 .discord-card__heading {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
   gap: var(--space-5);
 }
 
@@ -894,6 +895,10 @@ a.social-card:hover {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: rgba(8, 7, 11, 0.34);
   font-size: var(--fs-sm);
   color: var(--text-muted);
   white-space: nowrap;
@@ -923,10 +928,77 @@ a.social-card:hover {
   background-color: var(--text-dim);
 }
 
-.discord-card__activity {
-  margin-top: var(--space-5);
-  color: var(--text);
-  line-height: var(--lh-relaxed);
+.discord-activity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(8, 7, 11, 0.42);
+}
+
+.discord-activity__image-wrap {
+  position: relative;
+  display: grid;
+  width: 5rem;
+  height: 5rem;
+  flex: none;
+  overflow: hidden;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--surface-raised);
+  color: var(--accent-bright);
+  font-size: var(--fs-2xl);
+}
+
+.discord-activity__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.discord-activity__image[hidden] {
+  display: none;
+}
+
+.discord-activity__image-fallback[hidden] {
+  display: none;
+}
+
+.discord-activity__content {
+  min-width: 0;
+}
+
+.discord-activity__verb {
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+.discord-activity__name {
+  margin-top: var(--space-1);
+  overflow-wrap: anywhere;
+  font-size: var(--fs-lg);
+  letter-spacing: var(--tracking-snug);
+}
+
+.discord-activity__details {
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-normal);
+  overflow-wrap: anywhere;
+}
+
+.discord-activity__elapsed {
+  margin-top: var(--space-2);
+  color: #4ade80;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
 }
 
 .discord-card__note {
@@ -1492,28 +1564,17 @@ a.social-card:hover .social-icon {
 }
 
 .discord-card__avatar {
+  display: block;
+  object-fit: cover;
   overflow: hidden;
   border-radius: 50%;
   background: #09070f;
-  color: var(--violet-300);
-}
-
-.discord-card__avatar svg {
-  width: 1.55rem;
-  height: 1.55rem;
-  fill: currentColor;
 }
 
 .discord-card__status {
   max-width: 100%;
   white-space: normal;
   overflow-wrap: anywhere;
-}
-
-.discord-card__activity {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  word-break: break-word;
 }
 
 .discord-card__note {
@@ -1536,16 +1597,17 @@ a.social-card:hover .social-icon {
 }
 
 @media (max-width: 640px) {
-  .discord-card__heading {
-    align-items: flex-start;
-  }
-
   .discord-card__status {
     flex: 0 1 auto;
   }
 
-  .discord-card__identity {
-    flex: 1 1 100%;
+  .discord-activity {
+    gap: var(--space-3);
+  }
+
+  .discord-activity__image-wrap {
+    width: 4rem;
+    height: 4rem;
   }
 }
 
