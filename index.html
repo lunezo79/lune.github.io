@@ -273,17 +273,36 @@
 
     <section class="section" id="three-d" aria-labelledby="three-d-title" data-page-view="three-d">
       <div class="container">
-        <div class="section-head" data-reveal>
-          <p class="eyebrow">Selected work · 3D</p>
-          <h2 class="section-title" id="three-d-title">3D models.</h2>
-          <p class="section-lede">
-            Browse finished models and select a preview to see its images and
-            technical details.
-          </p>
+        <div class="three-d__heading-row">
+          <div class="section-head" data-reveal>
+            <p class="eyebrow">Selected work · 3D</p>
+            <h2 class="section-title" id="three-d-title">3D models.</h2>
+            <p class="section-lede">
+              Browse finished models and select a preview to see its images and
+              technical details.
+            </p>
+            <p class="three-d__filter-status" data-filter-status aria-live="polite">Showing all 3D</p>
+          </div>
+          <details class="model-filter" data-model-filter>
+            <summary class="model-filter__toggle">
+              <span>Filter</span>
+              <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="m5 7.5 5 5 5-5" />
+              </svg>
+            </summary>
+            <div class="model-filter__options" aria-label="Filter 3D models">
+              <button class="model-filter__option" type="button" data-filter-category="all" aria-pressed="true">All 3D</button>
+              <button class="model-filter__option" type="button" data-filter-category="weapons" aria-pressed="false">Weapons</button>
+              <button class="model-filter__option" type="button" data-filter-category="greenery" aria-pressed="false">Greenery</button>
+              <button class="model-filter__option" type="button" data-filter-category="props" aria-pressed="false">Props</button>
+              <button class="model-filter__option" type="button" data-filter-category="characters" aria-pressed="false">Characters</button>
+              <button class="model-filter__option" type="button" data-filter-category="geology" aria-pressed="false">Geology</button>
+            </div>
+          </details>
         </div>
 
-        <div class="portfolio-grid" data-reveal-group="80">
-          <article class="portfolio-card portfolio-card--model" data-reveal>
+        <div class="portfolio-grid" data-reveal-group="80" data-model-gallery>
+          <article class="portfolio-card portfolio-card--model" data-reveal data-model-category="props">
             <div class="model-preview">
               <img
                 src="assets/images/cone-model-square.png"
@@ -296,7 +315,7 @@
             </div>
             <div class="portfolio-card__caption">
               <div>
-                <p class="portfolio-card__type">3D model</p>
+                <p class="portfolio-card__type">Props</p>
                 <h3 class="portfolio-card__title">Traffic cone</h3>
                 <p class="portfolio-card__summary">Low-poly cone with safety stripes.</p>
               </div>
@@ -304,7 +323,7 @@
             </div>
           </article>
 
-          <article class="portfolio-card portfolio-card--model" data-reveal>
+          <article class="portfolio-card portfolio-card--model" data-reveal data-model-category="weapons">
             <div class="model-preview">
               <img
                 src="assets/images/scythe-model.png"
@@ -317,7 +336,7 @@
             </div>
             <div class="portfolio-card__caption">
               <div>
-                <p class="portfolio-card__type">3D model</p>
+                <p class="portfolio-card__type">Weapons</p>
                 <h3 class="portfolio-card__title">Futuristic scythe</h3>
                 <p class="portfolio-card__summary">Low-poly weapon with a sweeping blade and metallic accents.</p>
               </div>
@@ -325,7 +344,7 @@
             </div>
           </article>
 
-          <article class="portfolio-card portfolio-card--model" data-reveal>
+          <article class="portfolio-card portfolio-card--model" data-reveal data-model-category="weapons">
             <div class="model-preview">
               <img
                 src="assets/images/karambit-model.png"
@@ -338,7 +357,7 @@
             </div>
             <div class="portfolio-card__caption">
               <div>
-                <p class="portfolio-card__type">3D model</p>
+                <p class="portfolio-card__type">Weapons</p>
                 <h3 class="portfolio-card__title">Karambit</h3>
                 <p class="portfolio-card__summary">Curved low-poly blade with blue trim and gold details.</p>
               </div>
@@ -346,7 +365,7 @@
             </div>
           </article>
 
-          <article class="portfolio-card portfolio-card--model" data-reveal>
+          <article class="portfolio-card portfolio-card--model" data-reveal data-model-category="props">
             <div class="model-preview">
               <img
                 src="assets/images/anvil-model.png"
@@ -359,7 +378,7 @@
             </div>
             <div class="portfolio-card__caption">
               <div>
-                <p class="portfolio-card__type">3D model</p>
+                <p class="portfolio-card__type">Props</p>
                 <h3 class="portfolio-card__title">Anvil</h3>
                 <p class="portfolio-card__summary">Low-poly blacksmith's anvil with a solid, angular silhouette.</p>
               </div>
@@ -367,7 +386,7 @@
             </div>
           </article>
 
-          <article class="portfolio-card portfolio-card--model" data-reveal>
+          <article class="portfolio-card portfolio-card--model" data-reveal data-model-category="weapons">
             <div class="model-preview">
               <img
                 src="assets/images/magic-wand-model.png"
@@ -380,7 +399,7 @@
             </div>
             <div class="portfolio-card__caption">
               <div>
-                <p class="portfolio-card__type">3D model</p>
+                <p class="portfolio-card__type">Weapons</p>
                 <h3 class="portfolio-card__title">Magic wand</h3>
                 <p class="portfolio-card__summary">Wooden wand topped with a bright blue five-pointed star.</p>
               </div>
@@ -389,6 +408,7 @@
           </article>
 
         </div>
+        <p class="three-d__empty" data-filter-empty hidden>No models in this category yet.</p>
 
       </div>
     </section>
@@ -407,7 +427,7 @@
           </span>
         </a>
         <div class="section-head model-detail__head" data-reveal>
-          <p class="eyebrow">3D model · May 22, 2026</p>
+          <p class="eyebrow">Props · May 22, 2026</p>
           <h2 class="section-title" id="traffic-cone-title">Traffic cone</h2>
           <p class="section-lede">
             A stylized low-poly safety cone. Its tapered body alternates bright
@@ -464,7 +484,7 @@
           </span>
         </a>
         <div class="section-head model-detail__head" data-reveal>
-          <p class="eyebrow">3D model</p>
+          <p class="eyebrow">Weapons</p>
           <h2 class="section-title" id="futuristic-scythe-title">Futuristic scythe</h2>
           <p class="section-lede">
             A low-poly sci-fi scythe built around a long, angular handle and
@@ -521,7 +541,7 @@
           </span>
         </a>
         <div class="section-head model-detail__head" data-reveal>
-          <p class="eyebrow">3D model</p>
+          <p class="eyebrow">Weapons</p>
           <h2 class="section-title" id="karambit-title">Karambit</h2>
           <p class="section-lede">
             A stylized curved blade with a clean white finish, cool blue edging,
@@ -578,7 +598,7 @@
           </span>
         </a>
         <div class="section-head model-detail__head" data-reveal>
-          <p class="eyebrow">3D model</p>
+          <p class="eyebrow">Props</p>
           <h2 class="section-title" id="anvil-title">Anvil</h2>
           <p class="section-lede">
             A low-poly blacksmith's anvil with a broad, squared body, a tapered
@@ -633,7 +653,7 @@
           </span>
         </a>
         <div class="section-head model-detail__head" data-reveal>
-          <p class="eyebrow">3D model</p>
+          <p class="eyebrow">Weapons</p>
           <h2 class="section-title" id="magic-wand-title">Magic wand</h2>
           <p class="section-lede">
             A simple wooden wand topped with a faceted blue star.

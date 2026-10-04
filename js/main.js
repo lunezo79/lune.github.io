@@ -10,6 +10,7 @@ import { initDiscordActivity } from "./discord.js";
 import { initProgress } from "./progress.js";
 import { initReveal } from "./reveal.js";
 import { initSettings } from "./settings.js";
+import { initModelFilter } from "./model-filter.js";
 import { initToTop } from "./to-top.js";
 
 function init() {
@@ -21,6 +22,7 @@ function init() {
   initProgress();
   initFooter();
   initSettings();
+  initModelFilter();
 }
 
 if (document.readyState === "loading") {
