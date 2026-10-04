@@ -1082,10 +1082,14 @@ a.social-card:hover {
   justify-content: center;
   min-height: 2.75rem;
   padding: var(--space-2) var(--space-4);
-  border: 1px solid rgba(var(--accent-rgb), 0.52);
-  border-bottom-color: rgba(92, 57, 145, 0.95);
+  border: 1px solid rgba(var(--theme-accent-rgb), 0.62);
+  border-bottom-color: rgba(var(--theme-accent-rgb), 0.9);
   border-radius: var(--radius-md);
-  background: linear-gradient(180deg, #392454 0%, #241638 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(var(--theme-accent-rgb), 0.3) 0%,
+    rgba(var(--theme-accent-rgb), 0.12) 100%
+  );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18),
     0 3px 0 rgba(10, 7, 15, 0.8),
     0 5px 12px rgba(0, 0, 0, 0.2);
@@ -1101,8 +1105,12 @@ a.social-card:hover {
 
 .portfolio-card__action:hover {
   transform: translateY(-1px);
-  border-color: rgba(215, 194, 255, 0.82);
-  background: linear-gradient(180deg, #4a2c70 0%, #2f1d49 100%);
+  border-color: rgba(var(--theme-accent-rgb), 0.95);
+  background: linear-gradient(
+    180deg,
+    rgba(var(--theme-accent-rgb), 0.46) 0%,
+    rgba(var(--theme-accent-rgb), 0.2) 100%
+  );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
     0 4px 0 rgba(10, 7, 15, 0.8),
     0 7px 16px rgba(0, 0, 0, 0.26);
@@ -1196,14 +1204,18 @@ a.social-card:hover {
   gap: var(--space-3);
   margin-bottom: var(--space-8);
   padding: var(--space-2) var(--space-5) var(--space-2) var(--space-2);
-  border: 1px solid rgba(var(--accent-rgb), 0.62);
-  border-bottom-color: rgba(83, 47, 139, 0.95);
+  border: 1px solid rgba(var(--theme-accent-rgb), 0.72);
+  border-bottom-color: rgba(var(--theme-accent-rgb), 0.95);
   border-radius: var(--radius-full);
-  background: linear-gradient(180deg, #26173a 0%, #120d1b 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(var(--theme-accent-rgb), 0.24) 0%,
+    rgba(var(--theme-accent-rgb), 0.08) 100%
+  );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11),
     0 3px 0 #08060c,
     0 7px 18px rgba(0, 0, 0, 0.32),
-    0 0 18px rgba(var(--accent-rgb), 0.13);
+    0 0 18px rgba(var(--theme-accent-rgb), 0.13);
   color: var(--white);
   transition: color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
@@ -1214,13 +1226,17 @@ a.social-card:hover {
 
 .model-detail__back:hover {
   transform: translateY(-2px);
-  border-color: rgba(var(--accent-rgb), 0.92);
-  background: linear-gradient(180deg, #382253 0%, #1b1129 100%);
-  color: var(--violet-200);
+  border-color: rgba(var(--theme-accent-rgb), 1);
+  background: linear-gradient(
+    180deg,
+    rgba(var(--theme-accent-rgb), 0.4) 0%,
+    rgba(var(--theme-accent-rgb), 0.16) 100%
+  );
+  color: var(--white);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 4px 0 #08060c,
     0 10px 24px rgba(0, 0, 0, 0.38),
-    0 0 24px rgba(var(--accent-rgb), 0.24);
+    0 0 24px rgba(var(--theme-accent-rgb), 0.24);
 }
 
 .model-detail__back:focus-visible {
@@ -1236,7 +1252,7 @@ a.social-card:hover {
 }
 
 .model-detail__back-kicker {
-  color: rgba(220, 205, 245, 0.7);
+  color: rgba(var(--theme-accent-rgb), 0.78);
   font-family: var(--font-mono);
   font-size: 0.62rem;
   font-weight: 500;
@@ -1250,7 +1266,7 @@ a.social-card:hover {
   font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: var(--tracking-snug);
-  text-shadow: 0 0 14px rgba(190, 150, 255, 0.2);
+  text-shadow: 0 0 14px rgba(var(--theme-accent-rgb), 0.2);
 }
 
 .model-detail__back-icon-wrap {
@@ -1259,12 +1275,16 @@ a.social-card:hover {
   height: 2.5rem;
   flex: none;
   place-items: center;
-  border: 1px solid rgba(var(--accent-rgb), 0.56);
+  border: 1px solid rgba(var(--theme-accent-rgb), 0.68);
   border-radius: 50%;
-  background: linear-gradient(145deg, #321c50, #100b18 76%);
+  background: linear-gradient(
+    145deg,
+    rgba(var(--theme-accent-rgb), 0.4),
+    rgba(var(--theme-accent-rgb), 0.08) 76%
+  );
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 0 14px rgba(var(--accent-rgb), 0.2);
-  color: #d8c0ff;
+    0 0 14px rgba(var(--theme-accent-rgb), 0.2);
+  color: var(--white);
   transition: border-color var(--dur-fast) var(--ease-out),
     background var(--dur-fast) var(--ease-out),
     color var(--dur-fast) var(--ease-out),
@@ -1290,11 +1310,15 @@ a.social-card:hover {
 
 .model-detail__back:hover .model-detail__back-icon-wrap {
   transform: translateX(-2px);
-  border-color: rgba(var(--accent-rgb), 0.92);
-  background: linear-gradient(145deg, #4b2b70, #1a1027 76%);
-  color: #f0e7ff;
+  border-color: rgba(var(--theme-accent-rgb), 1);
+  background: linear-gradient(
+    145deg,
+    rgba(var(--theme-accent-rgb), 0.58),
+    rgba(var(--theme-accent-rgb), 0.16) 76%
+  );
+  color: var(--white);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 0 18px rgba(var(--accent-rgb), 0.38);
+    0 0 18px rgba(var(--theme-accent-rgb), 0.38);
 }
 
 .model-detail__head {

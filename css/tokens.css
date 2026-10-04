@@ -31,6 +31,7 @@
   --accent-bright: var(--violet-400);
   --accent-deep: var(--violet-700);
   --accent-rgb: 139, 92, 246;
+  --theme-accent-rgb: 139, 92, 246;
 
   /* --- Translucent helpers ----------------------------------------------- */
   --border: rgba(255, 255, 255, 0.08);
@@ -127,6 +128,7 @@
   --violet-700: #0369a1;
   --violet-900: #0c4a6e;
   --accent-rgb: 14, 165, 233;
+  --theme-accent-rgb: 14, 165, 233;
   --border-accent: rgba(14, 165, 233, 0.35);
   --accent-wash: rgba(14, 165, 233, 0.12);
   --accent-wash-strong: rgba(14, 165, 233, 0.22);
@@ -142,6 +144,7 @@
   --violet-700: #15803d;
   --violet-900: #14532d;
   --accent-rgb: 34, 197, 94;
+  --theme-accent-rgb: 34, 197, 94;
   --border-accent: rgba(34, 197, 94, 0.35);
   --accent-wash: rgba(34, 197, 94, 0.12);
   --accent-wash-strong: rgba(34, 197, 94, 0.22);
@@ -157,6 +160,7 @@
   --violet-700: #be123c;
   --violet-900: #881337;
   --accent-rgb: 244, 63, 94;
+  --theme-accent-rgb: 244, 63, 94;
   --border-accent: rgba(244, 63, 94, 0.35);
   --accent-wash: rgba(244, 63, 94, 0.12);
   --accent-wash-strong: rgba(244, 63, 94, 0.22);
@@ -172,6 +176,7 @@
   --violet-700: #b45309;
   --violet-900: #78350f;
   --accent-rgb: 245, 158, 11;
+  --theme-accent-rgb: 245, 158, 11;
   --border-accent: rgba(245, 158, 11, 0.35);
   --accent-wash: rgba(245, 158, 11, 0.12);
   --accent-wash-strong: rgba(245, 158, 11, 0.22);
