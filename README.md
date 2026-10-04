@@ -15,8 +15,8 @@ committed here is exactly what the browser downloads, which makes the site fast 
 load and trivial to deploy.
 
 The portfolio introduces Lune as a UI designer and 3D modeler, with expandable
-2D and 3D project case studies, partner credits, social links, and live Discord
-presence.
+2D, 3D, and VFX project case studies, partner credits, social links, and live
+Discord presence.
 
 ## Features
 
@@ -25,7 +25,7 @@ presence.
 - Responsive layout that works from small phones up to wide desktops
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
 - Hash-addressable, viewport-isolated page views keep the home, About, portfolio, and partners separate
-- Expandable project cards and dedicated detail pages for portfolio case studies
+- Expandable 2D, 3D, and VFX project cards and dedicated detail pages for case studies
 - Traffic cone project detail page with a render and mesh statistics
 - Matching black-and-purple social icons and quick animated page transitions
 - Live Discord status and activity through the public Lanyard API
