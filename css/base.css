@@ -1,0 +1,223 @@
+/* ==========================================================================
+   base.css — layout primitives, typography helpers, utilities
+   ========================================================================== */
+
+/* --- Layout ------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-gap);
+}
+
+.section--tight {
+  padding-block: clamp(3rem, 2rem + 5vw, 5rem);
+}
+
+/* --- Accessibility ------------------------------------------------------ */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: var(--z-drawer);
+  padding: var(--space-3) var(--space-5);
+  background: var(--violet-600);
+  color: var(--white);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transform: translateY(-160%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* --- Section headings --------------------------------------------------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent-bright);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent));
+}
+
+.section-head {
+  max-width: 62ch;
+  margin-bottom: var(--space-12);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-title {
+  margin-top: var(--space-5);
+  font-size: var(--fs-2xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+.section-lede {
+  margin-top: var(--space-5);
+  color: var(--text-muted);
+  font-size: var(--fs-lg);
+  line-height: var(--lh-relaxed);
+}
+
+/* --- Prose -------------------------------------------------------------- */
+
+.prose > * + * {
+  margin-top: var(--space-5);
+}
+
+.prose p {
+  color: var(--text-muted);
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* --- Text utilities ----------------------------------------------------- */
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--violet-200) 0%, var(--violet-400) 38%, var(--violet-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: var(--tracking-snug);
+}
+
+.link-inline {
+  color: var(--accent-bright);
+  text-decoration: underline;
+  text-decoration-color: var(--border-accent);
+  text-underline-offset: 0.25em;
+  transition: color var(--dur-fast) var(--ease-out),
+    text-decoration-color var(--dur-fast) var(--ease-out);
+}
+
+.link-inline:hover {
+  color: var(--violet-200);
+  text-decoration-color: var(--violet-200);
+}
+
+/* --- Action rows -------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+}
+
+/* --- Decorative --------------------------------------------------------- */
+
+.rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(90deg, transparent, var(--border-strong) 18%, var(--border-strong) 82%, transparent);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: var(--z-bg);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* --- Scroll reveal ------------------------------------------------------ */
+/* Elements only start hidden once JS confirms it is running, so the page
+   degrades gracefully to fully visible content without JavaScript. */
+
+.has-js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.has-js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .has-js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Responsive tweaks -------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .container {
+    padding-inline: var(--space-5);
+  }
+
+  .section-head {
+    margin-bottom: var(--space-10);
+  }
+}

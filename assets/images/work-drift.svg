@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Abstract stack of translucent violet panels on a dark background">
+  <defs>
+    <linearGradient id="drift-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#100e1b"/>
+      <stop offset="1" stop-color="#06050a"/>
+    </linearGradient>
+
+    <linearGradient id="drift-panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#6d28d9" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <linearGradient id="drift-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ddd6fe" stop-opacity="0.55"/>
+      <stop offset="0.6" stop-color="#8b5cf6" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#6d28d9" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <radialGradient id="drift-glow" cx="0.35" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="drift-vignette" cx="0.5" cy="0.5" r="0.74">
+      <stop offset="0.4" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.8"/>
+    </radialGradient>
+
+    <radialGradient id="drift-fade" cx="0.5" cy="0.48" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="drift-grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M 72 0 L 0 0 L 0 72" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+
+    <mask id="drift-mask">
+      <rect width="1600" height="1000" fill="url(#drift-fade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#drift-bg)"/>
+
+  <g mask="url(#drift-mask)">
+    <rect width="1600" height="1000" fill="url(#drift-grid)"/>
+  </g>
+
+  <ellipse cx="560" cy="330" rx="700" ry="560" fill="url(#drift-glow)" opacity="0.6"/>
+
+  <g stroke="url(#drift-edge)" stroke-width="1.5">
+    <g transform="rotate(-16 800 500)">
+      <rect x="380" y="300" width="400" height="250" rx="24" fill="url(#drift-panel)"/>
+    </g>
+    <g transform="rotate(-7 800 500)">
+      <rect x="520" y="380" width="400" height="250" rx="24" fill="url(#drift-panel)"/>
+    </g>
+    <g transform="rotate(3 800 500)">
+      <rect x="680" y="460" width="400" height="250" rx="24" fill="url(#drift-panel)"/>
+    </g>
+    <g transform="rotate(13 800 500)">
+      <rect x="840" y="540" width="400" height="250" rx="24" fill="url(#drift-panel)"/>
+    </g>
+  </g>
+
+  <g transform="rotate(3 800 500)" fill="#c4b5fd" opacity="0.5">
+    <rect x="716" y="506" width="150" height="12" rx="6"/>
+    <rect x="716" y="542" width="286" height="10" rx="5" opacity="0.6"/>
+    <rect x="716" y="574" width="228" height="10" rx="5" opacity="0.45"/>
+    <rect x="716" y="606" width="96" height="26" rx="13" opacity="0.7"/>
+  </g>
+
+  <circle cx="1258" cy="266" r="5" fill="#c4b5fd" opacity="0.75"/>
+  <circle cx="312" cy="772" r="7" fill="#a78bfa" opacity="0.6"/>
+
+  <rect width="1600" height="1000" fill="url(#drift-vignette)"/>
+</svg>

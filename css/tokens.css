@@ -1,0 +1,256 @@
+/* ==========================================================================
+   tokens.css — design tokens + reset
+   Every colour, space, radius, shadow and type step used by the site is
+   declared here once. Change a value here and it propagates everywhere.
+   ========================================================================== */
+
+:root {
+  /* --- Core palette ------------------------------------------------------ */
+  --black: #08070b;
+  --black-soft: #0b0a11;
+  --surface: #121019;
+  --surface-raised: #191725;
+  --surface-hover: #201d2e;
+
+  --white: #ffffff;
+  --text: #eceaf4;
+  --text-muted: #a49eb8;
+  --text-dim: #6d6880;
+
+  /* --- Violet accent ramp ------------------------------------------------ */
+  --violet-100: #ede9fe;
+  --violet-200: #ddd6fe;
+  --violet-300: #c4b5fd;
+  --violet-400: #a78bfa;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --violet-700: #6d28d9;
+  --violet-900: #3b1d7a;
+
+  --accent: var(--violet-500);
+  --accent-bright: var(--violet-400);
+  --accent-deep: var(--violet-700);
+
+  /* --- Translucent helpers ----------------------------------------------- */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(139, 92, 246, 0.35);
+  --accent-wash: rgba(139, 92, 246, 0.12);
+  --accent-wash-strong: rgba(139, 92, 246, 0.22);
+  --overlay: rgba(8, 7, 11, 0.72);
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --fs-2xs: 0.6875rem; /* 11px */
+  --fs-xs: 0.8125rem; /* 13px */
+  --fs-sm: 0.9375rem; /* 15px */
+  --fs-base: 1.0625rem; /* 17px */
+  --fs-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --fs-xl: clamp(1.375rem, 1.15rem + 0.9vw, 1.75rem);
+  --fs-2xl: clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
+  --fs-3xl: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  --fs-hero: clamp(2.5rem, 1.1rem + 6vw, 5.5rem);
+
+  --lh-tight: 1.06;
+  --lh-snug: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.015em;
+  --tracking-wide: 0.08em;
+  --tracking-widest: 0.18em;
+
+  /* --- Spacing scale (4px base) ------------------------------------------ */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* --- Layout ------------------------------------------------------------ */
+  --container: 1160px;
+  --container-narrow: 720px;
+  --header-height: 4.5rem;
+  --section-gap: clamp(5rem, 3rem + 9vw, 9.5rem);
+
+  /* --- Radii ------------------------------------------------------------- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 28px 60px -20px rgba(0, 0, 0, 0.85);
+  --glow-accent: 0 0 0 1px var(--border-accent), 0 18px 60px -24px rgba(139, 92, 246, 0.65);
+  --glow-text: 0 0 32px rgba(139, 92, 246, 0.45);
+
+  /* --- Motion ------------------------------------------------------------ */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur-base: 280ms;
+  --dur-slow: 620ms;
+
+  /* --- Layering ---------------------------------------------------------- */
+  --z-bg: 0;
+  --z-base: 1;
+  --z-header: 100;
+  --z-drawer: 200;
+
+  --focus-ring: 0 0 0 2px var(--black), 0 0 0 4px var(--violet-400);
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--black);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+  font-style: italic; /* shown if the image fails to load */
+  background-color: var(--surface);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background-color: var(--violet-600);
+  color: var(--white);
+}
+
+/* Visible focus for keyboard users only */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2637;
+  border: 2px solid var(--black);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet-700);
+}
+
+/* Respect reduced-motion at the source */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

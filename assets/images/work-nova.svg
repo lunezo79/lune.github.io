@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Abstract orbital ring artwork on a dark violet background">
+  <defs>
+    <linearGradient id="nova-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12101c"/>
+      <stop offset="1" stop-color="#06050a"/>
+    </linearGradient>
+
+    <radialGradient id="nova-core" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ddd6fe" stop-opacity="0.9"/>
+      <stop offset="0.3" stop-color="#8b5cf6" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#6d28d9" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="nova-ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c4b5fd"/>
+      <stop offset="0.45" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#2e1560"/>
+    </linearGradient>
+
+    <linearGradient id="nova-orb" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.45" stop-color="#a78bfa"/>
+      <stop offset="1" stop-color="#6d28d9"/>
+    </linearGradient>
+
+    <radialGradient id="nova-vignette" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0.45" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.75"/>
+    </radialGradient>
+
+    <radialGradient id="nova-fade" cx="0.5" cy="0.44" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="nova-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 L 0 80" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+
+    <mask id="nova-mask">
+      <rect width="1600" height="1000" fill="url(#nova-fade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#nova-bg)"/>
+
+  <g mask="url(#nova-mask)">
+    <rect width="1600" height="1000" fill="url(#nova-grid)"/>
+  </g>
+
+  <ellipse cx="800" cy="450" rx="640" ry="640" fill="url(#nova-core)" opacity="0.6"/>
+
+  <g fill="none" stroke="url(#nova-ring)">
+    <ellipse cx="800" cy="470" rx="392" ry="392" stroke-width="1.6" stroke-opacity="0.85" transform="rotate(-24 800 470)"/>
+    <ellipse cx="800" cy="470" rx="300" ry="300" stroke-width="1.2" stroke-opacity="0.6" transform="rotate(38 800 470)"/>
+    <ellipse cx="800" cy="470" rx="216" ry="216" stroke-width="1" stroke-opacity="0.45" transform="rotate(-68 800 470)"/>
+  </g>
+
+  <circle cx="800" cy="470" r="72" fill="url(#nova-core)"/>
+  <circle cx="800" cy="470" r="40" fill="url(#nova-orb)"/>
+
+  <circle cx="1160" cy="230" r="9" fill="#a78bfa" opacity="0.9"/>
+  <circle cx="1160" cy="230" r="22" fill="#8b5cf6" opacity="0.18"/>
+  <circle cx="452" cy="742" r="6.5" fill="#c4b5fd" opacity="0.8"/>
+  <circle cx="452" cy="742" r="17" fill="#8b5cf6" opacity="0.16"/>
+
+  <rect width="1600" height="1000" fill="url(#nova-vignette)"/>
+</svg>

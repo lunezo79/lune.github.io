@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="Abstract equaliser bars on a dark violet background">
+  <defs>
+    <linearGradient id="pulse-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f0d18"/>
+      <stop offset="1" stop-color="#06050a"/>
+    </linearGradient>
+
+    <linearGradient id="pulse-bar" x1="0" y1="230" x2="0" y2="770" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ede9fe"/>
+      <stop offset="0.22" stop-color="#a78bfa"/>
+      <stop offset="0.62" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#31136b"/>
+    </linearGradient>
+
+    <radialGradient id="pulse-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="pulse-vignette" cx="0.5" cy="0.5" r="0.72">
+      <stop offset="0.4" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.8"/>
+    </radialGradient>
+
+    <radialGradient id="pulse-fade" cx="0.5" cy="0.5" r="0.62">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <pattern id="pulse-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M 64 0 L 0 0 L 0 64" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+
+    <mask id="pulse-mask">
+      <rect width="1600" height="1000" fill="url(#pulse-fade)"/>
+    </mask>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#pulse-bg)"/>
+
+  <g mask="url(#pulse-mask)">
+    <rect width="1600" height="1000" fill="url(#pulse-grid)"/>
+  </g>
+
+  <ellipse cx="800" cy="500" rx="720" ry="440" fill="url(#pulse-glow)" opacity="0.55"/>
+
+  <g fill="url(#pulse-bar)">
+    <rect x="114" y="462" width="22" height="76" rx="11"/>
+    <rect x="168" y="438" width="22" height="124" rx="11"/>
+    <rect x="222" y="405" width="22" height="190" rx="11"/>
+    <rect x="276" y="369" width="22" height="262" rx="11"/>
+    <rect x="330" y="330" width="22" height="340" rx="11"/>
+    <rect x="384" y="285" width="22" height="430" rx="11"/>
+    <rect x="438" y="336" width="22" height="328" rx="11"/>
+    <rect x="492" y="382" width="22" height="236" rx="11"/>
+    <rect x="546" y="416" width="22" height="168" rx="11"/>
+    <rect x="600" y="365" width="22" height="270" rx="11"/>
+    <rect x="654" y="309" width="22" height="382" rx="11"/>
+    <rect x="708" y="265" width="22" height="470" rx="11"/>
+    <rect x="762" y="230" width="22" height="540" rx="11"/>
+    <rect x="816" y="274" width="22" height="452" rx="11"/>
+    <rect x="870" y="322" width="22" height="356" rx="11"/>
+    <rect x="924" y="369" width="22" height="262" rx="11"/>
+    <rect x="978" y="402" width="22" height="196" rx="11"/>
+    <rect x="1032" y="350" width="22" height="300" rx="11"/>
+    <rect x="1086" y="302" width="22" height="396" rx="11"/>
+    <rect x="1140" y="257" width="22" height="486" rx="11"/>
+    <rect x="1194" y="296" width="22" height="408" rx="11"/>
+    <rect x="1248" y="344" width="22" height="312" rx="11"/>
+    <rect x="1302" y="384" width="22" height="232" rx="11"/>
+    <rect x="1356" y="414" width="22" height="172" rx="11"/>
+    <rect x="1410" y="438" width="22" height="124" rx="11"/>
+    <rect x="1464" y="458" width="22" height="84" rx="11"/>
+  </g>
+
+  <line x1="80" y1="500" x2="1520" y2="500" stroke="#a78bfa" stroke-opacity="0.18" stroke-width="1"/>
+
+  <rect width="1600" height="1000" fill="url(#pulse-vignette)"/>
+</svg>

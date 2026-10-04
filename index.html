@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#08070b" />
+
+  <title>Lune — UI Designer &amp; 3D Modeler</title>
+  <meta
+    name="description"
+    content="Lune's portfolio: UI design, 3D modeling, and explorations in scripting and animation."
+  />
+  <link rel="canonical" href="https://lunezo79.github.io/lune.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lune — UI Designer &amp; 3D Modeler" />
+  <meta
+    property="og:description"
+    content="UI design, 3D modeling, and explorations in scripting and animation."
+  />
+  <meta property="og:url" content="https://lunezo79.github.io/lune.github.io/" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/icons/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap"
+  />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <script>
+    document.documentElement.classList.replace("no-js", "has-js");
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" data-progress aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Lune — back to top">
+        <img
+          class="brand__mark"
+          src="assets/icons/favicon.svg"
+          alt=""
+          width="32"
+          height="32"
+          decoding="async"
+        />
+        <span class="brand__name">lune<span class="brand__dot">.</span></span>
+      </a>
+
+      <nav class="nav" id="primary-nav" data-nav aria-label="Primary">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about" data-nav-link>About me</a></li>
+          <li><a class="nav__link" href="#three-d" data-nav-link>3D</a></li>
+          <li><a class="nav__link" href="#two-d" data-nav-link>2D</a></li>
+          <li><a class="nav__link" href="#partners" data-nav-link>Partners</a></li>
+          <li><a class="nav__link" href="#more" data-nav-link>More about me</a></li>
+        </ul>
+      </nav>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        aria-label="Open menu"
+      >
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" data-hero>
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__grid"></div>
+        <div class="hero__rings"></div>
+        <span class="glow glow--hero-a" data-parallax="1.4"></span>
+        <span class="glow glow--hero-b" data-parallax="0.8"></span>
+      </div>
+
+      <div class="container hero__inner">
+        <p class="pill" data-reveal>
+          <span class="pill__dot"></span>
+          Creating, learning, and exploring
+        </p>
+        <h1 class="hero__title" data-reveal>
+          Hi, I'm Lune.
+          <em>
+            I shape <span class="text-gradient">visual worlds</span> and the
+            interfaces within them.
+          </em>
+        </h1>
+        <p class="hero__lede" data-reveal>
+          UI designer and 3D modeler, currently learning scripting and animation.
+          I enjoy making thoughtful interfaces, building detailed models, and
+          bringing ideas to life one experiment at a time.
+        </p>
+        <div class="hero__actions" data-reveal>
+          <a class="btn btn--primary" href="#three-d">
+            Explore my work
+            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="m13 6 6 6-6 6" />
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#about">Find me online</a>
+        </div>
+      </div>
+
+      <span class="hero__scroll" aria-hidden="true"></span>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">About me</p>
+          <h2 class="section-title" id="about-title">
+            Design-minded, detail-focused, always learning.
+          </h2>
+          <p class="section-lede">
+            I'm a UI designer and 3D modeler exploring scripting and animation.
+            This is where I collect my work and the places you can find me.
+          </p>
+        </div>
+
+        <div class="social-grid" data-reveal-group="70">
+          <a class="social-card" href="https://github.com/lunezo79" rel="me noopener" data-reveal>
+            <span class="social-card__label">GitHub</span>
+            <span class="social-card__value">@lunezo79</span>
+            <span class="social-card__hint">Code &amp; experiments ↗</span>
+          </a>
+
+          <a class="social-card" href="https://discord.com/users/762121502698242054" rel="me noopener" data-reveal>
+            <span class="social-card__label">Discord</span>
+            <span class="social-card__value">View profile ↗</span>
+            <span class="social-card__hint">762121502698242054</span>
+          </a>
+
+          <div class="social-card social-card--placeholder" data-reveal>
+            <span class="social-card__label">Telegram</span>
+            <span class="social-card__value">Add your profile link</span>
+            <span class="social-card__hint">Link not added yet</span>
+          </div>
+
+          <div class="social-card social-card--placeholder" data-reveal>
+            <span class="social-card__label">Roblox</span>
+            <span class="social-card__value">Add your profile link</span>
+            <span class="social-card__hint">Link not added yet</span>
+          </div>
+        </div>
+
+        <article class="discord-card" data-discord-card data-user-id="762121502698242054" data-reveal>
+          <div class="discord-card__heading">
+            <div>
+              <p class="eyebrow">Discord activity</p>
+              <h3 class="discord-card__name" data-discord-name>Lune</h3>
+            </div>
+            <span class="discord-card__status">
+              <span class="discord-card__status-dot" data-discord-dot aria-hidden="true"></span>
+              <span data-discord-status aria-live="polite">Connecting to Discord…</span>
+            </span>
+          </div>
+          <p class="discord-card__activity" data-discord-activity aria-live="polite">
+            Loading current activity…
+          </p>
+          <p class="discord-card__note">
+            Live presence provided by Lanyard. Activity appears when Discord
+            shares it publicly.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="three-d" aria-labelledby="three-d-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Selected work · 3D</p>
+          <h2 class="section-title" id="three-d-title">Models, scenes, and experiments.</h2>
+          <p class="section-lede">
+            Expand a project to add its story, tools, process, and final result.
+            Replace these starter cards with your own work when you're ready.
+          </p>
+        </div>
+
+        <div class="portfolio-grid" data-reveal-group="80">
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">3D model</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a one-line introduction to this piece.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Concept:</strong> What were you making, and what inspired it?</p>
+              <p><strong>Process:</strong> Describe your modeling, materials, lighting, and any challenges.</p>
+              <p><strong>Tools:</strong> Add the software and techniques you used.</p>
+              <p><strong>Media:</strong> Add a render, turntable, or link to the finished work.</p>
+            </div>
+          </details>
+
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">3D scene</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a short description of the scene.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Concept:</strong> Add the idea and intended mood.</p>
+              <p><strong>Process:</strong> Explain how you built and refined the scene.</p>
+              <p><strong>Tools:</strong> List the software and techniques you used.</p>
+              <p><strong>Media:</strong> Add your final images or animation.</p>
+            </div>
+          </details>
+
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">3D study</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a note about what you practiced.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Goal:</strong> Describe the skill or technique you explored.</p>
+              <p><strong>What I learned:</strong> Add a reflection on the result.</p>
+              <p><strong>Tools:</strong> List the software and techniques you used.</p>
+              <p><strong>Media:</strong> Add an image or link to the study.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="two-d" aria-labelledby="two-d-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Selected work · 2D</p>
+          <h2 class="section-title" id="two-d-title">Interfaces and visual design.</h2>
+          <p class="section-lede">
+            Use these expandable case-study cards to show the thinking behind
+            each design, not just the final screen.
+          </p>
+        </div>
+
+        <div class="portfolio-grid" data-reveal-group="80">
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">UI design</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a one-line introduction to this design.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Brief:</strong> Explain the problem, audience, and constraints.</p>
+              <p><strong>Approach:</strong> Describe your research, layout, and visual decisions.</p>
+              <p><strong>Tools:</strong> Add the design tools and methods you used.</p>
+              <p><strong>Outcome:</strong> Add what changed or what you learned.</p>
+              <p><strong>Media:</strong> Add mockups, screens, or a prototype link.</p>
+            </div>
+          </details>
+
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">Visual design</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a short description of the work.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Brief:</strong> Add the goal and intended audience.</p>
+              <p><strong>Approach:</strong> Explain the idea and how you developed it.</p>
+              <p><strong>Tools:</strong> List the software and techniques you used.</p>
+              <p><strong>Media:</strong> Add final images or a link to the project.</p>
+            </div>
+          </details>
+
+          <details class="portfolio-card" data-reveal>
+            <summary>
+              <span class="portfolio-card__type">Exploration</span>
+              <span class="portfolio-card__title">Project title</span>
+              <span class="portfolio-card__summary">Add a note about this design experiment.</span>
+              <span class="portfolio-card__toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="portfolio-card__details">
+              <p><strong>Idea:</strong> Describe what you wanted to explore.</p>
+              <p><strong>Process:</strong> Add the steps and iterations you tried.</p>
+              <p><strong>What I learned:</strong> Share a short reflection.</p>
+              <p><strong>Media:</strong> Add images or a link to the result.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partners" aria-labelledby="partners-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Partners</p>
+          <h2 class="section-title" id="partners-title">Good work is better together.</h2>
+          <p class="section-lede">
+            A space to credit the groups, creators, and people I've had the
+            chance to work with.
+          </p>
+        </div>
+        <div class="partner-grid" data-reveal-group="80">
+          <article class="partner-card" data-reveal>
+            <p class="partner-card__label">Group or person</p>
+            <h3 class="partner-card__title">Add a name</h3>
+            <p class="partner-card__description">Add a short note about what we worked on together.</p>
+          </article>
+          <article class="partner-card" data-reveal>
+            <p class="partner-card__label">Group or person</p>
+            <h3 class="partner-card__title">Add a name</h3>
+            <p class="partner-card__description">Add a short note about what we worked on together.</p>
+          </article>
+          <article class="partner-card" data-reveal>
+            <p class="partner-card__label">Group or person</p>
+            <h3 class="partner-card__title">Add a name</h3>
+            <p class="partner-card__description">Add a short note about what we worked on together.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="more" aria-labelledby="more-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">More about me</p>
+          <h2 class="section-title" id="more-title">A little more, soon.</h2>
+          <p class="section-lede">
+            This section is a placeholder for now. I'll add more about my
+            interests, creative process, and what I'm learning here.
+          </p>
+        </div>
+        <div class="more-placeholder" data-reveal>
+          <p>More about Lune — coming soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact__card" data-reveal>
+          <div class="contact__inner">
+            <p class="eyebrow">Contact</p>
+            <h2 class="contact__title" id="contact-title">Let's make something together.</h2>
+            <p class="contact__lede">
+              Have a project, collaboration, or just want to say hi? Find me on
+              Discord or GitHub.
+            </p>
+            <div class="contact__actions">
+              <a class="btn btn--primary" href="https://discord.com/users/762121502698242054" rel="me noopener">Message me on Discord</a>
+              <a class="btn btn--ghost" href="https://github.com/lunezo79" rel="me noopener">Follow on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__inner">
+      <div class="footer__meta">
+        <p>© <span data-year>2026</span> Lune. All rights reserved.</p>
+        <p class="footer__signature">Made with care, HTML, CSS, and a little JavaScript.</p>
+      </div>
+      <nav class="footer__links" aria-label="Elsewhere">
+        <a class="footer__link" href="https://github.com/lunezo79" rel="me noopener">GitHub</a>
+        <a class="footer__link" href="https://discord.com/users/762121502698242054" rel="me noopener">Discord</a>
+        <a class="footer__link" href="#top">Back to top</a>
+      </nav>
+    </div>
+  </footer>
+
+  <button class="to-top" type="button" data-to-top aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 19V5" />
+      <path d="m6 11 6-6 6 6" />
+    </svg>
+  </button>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
