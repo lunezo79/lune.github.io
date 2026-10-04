@@ -95,13 +95,27 @@ function initPageViews(header) {
   const views = Array.from(document.querySelectorAll("[data-page-view]"));
   if (!views.length) return;
 
-  const showView = (id, behavior = "smooth") => {
+  const showView = (id, behavior = "smooth", animate = true) => {
     const target = document.getElementById(id);
     const activeView = target?.dataset.pageView || "top";
 
     views.forEach((view) => {
       view.hidden = view.dataset.pageView !== activeView;
+      view.classList.remove("page-view-entering");
     });
+
+    const visibleViews = views.filter((view) => !view.hidden);
+    if (animate && !prefersReducedMotion()) {
+      visibleViews.forEach((view) => {
+        void view.offsetWidth;
+        view.classList.add("page-view-entering");
+        view.addEventListener(
+          "animationend",
+          () => view.classList.remove("page-view-entering"),
+          { once: true }
+        );
+      });
+    }
 
     links.forEach((link) => {
       const isActive = link.getAttribute("href") === `#${activeView}`;
@@ -124,7 +138,7 @@ function initPageViews(header) {
     const id = window.location.hash.slice(1) || "top";
     const target = document.getElementById(id);
     if (id !== "top" && !target?.dataset.pageView) return;
-    showView(id, "auto");
+    showView(id, "auto", false);
   };
   showCurrentView();
 

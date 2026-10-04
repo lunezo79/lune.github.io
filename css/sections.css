@@ -850,22 +850,6 @@ a.social-card:hover {
   font-weight: 600;
 }
 
-.discord-card__avatar img,
-.discord-card__avatar-fallback {
-  grid-area: 1 / 1;
-}
-
-.discord-card__avatar img {
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  object-fit: cover;
-}
-
-.discord-card__avatar img[hidden] {
-  display: none;
-}
-
 .discord-card__label {
   font-family: var(--font-mono);
   font-size: var(--fs-xs);
@@ -1076,5 +1060,168 @@ a.social-card:hover {
 
   .portfolio-card summary {
     min-height: 10rem;
+  }
+}
+
+/* --- Social links, presence and page transitions ----------------------- */
+
+.hero-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.hero-social {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background-color: rgba(8, 7, 11, 0.72);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  transition: color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.hero-social:hover {
+  color: var(--text);
+  border-color: var(--border-accent);
+  background-color: rgba(31, 20, 53, 0.86);
+  transform: translateY(-2px);
+}
+
+.hero-social--placeholder {
+  cursor: default;
+}
+
+.social-card__top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.social-icon {
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: var(--radius-sm);
+  background: #09070f;
+  color: var(--violet-300);
+  transition: border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.social-icon svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.social-icon svg path {
+  fill: currentColor;
+}
+
+.hero-social .social-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+}
+
+.hero-social:hover .social-icon,
+a.social-card:hover .social-icon {
+  border-color: var(--violet-400);
+  color: var(--violet-100);
+  box-shadow: 0 0 18px -8px var(--violet-400);
+}
+
+.discord-card--hero {
+  min-width: 0;
+}
+
+.discord-card__heading,
+.discord-card__identity {
+  min-width: 0;
+}
+
+.discord-card__identity > div {
+  min-width: 0;
+}
+
+.discord-card__name {
+  overflow-wrap: anywhere;
+}
+
+.discord-card__avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  background: #09070f;
+  color: var(--violet-300);
+}
+
+.discord-card__avatar svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: currentColor;
+}
+
+.discord-card__status {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.discord-card__activity {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.discord-card__note {
+  margin-top: var(--space-2);
+}
+
+[data-page-view].page-view-entering {
+  animation: page-view-in 220ms var(--ease-out) both;
+}
+
+@keyframes page-view-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .discord-card__heading {
+    align-items: flex-start;
+  }
+
+  .discord-card__status {
+    flex: 0 1 auto;
+  }
+
+  .discord-card__identity {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-page-view].page-view-entering {
+    animation: none;
   }
 }
