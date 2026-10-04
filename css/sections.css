@@ -1121,26 +1121,34 @@ a.social-card:hover {
   width: fit-content;
   max-width: 100%;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-3);
   margin-bottom: var(--space-8);
-  padding: var(--space-2) var(--space-4) var(--space-2) var(--space-3);
-  border: 1px solid var(--border);
+  padding: var(--space-2) var(--space-5) var(--space-2) var(--space-2);
+  border: 1px solid rgba(177, 132, 255, 0.62);
+  border-bottom-color: rgba(83, 47, 139, 0.95);
   border-radius: var(--radius-full);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 8px rgba(0, 0, 0, 0.16);
-  color: var(--text-muted);
-  font-size: var(--fs-sm);
+  background: linear-gradient(180deg, #26173a 0%, #120d1b 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 3px 0 #08060c,
+    0 7px 18px rgba(0, 0, 0, 0.32),
+    0 0 18px rgba(139, 92, 246, 0.13);
+  color: var(--white);
   transition: color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
     transform var(--dur-fast) var(--ease-out);
 }
 
 .model-detail__back:hover {
-  transform: translateX(-2px);
-  border-color: var(--border-accent);
-  background-color: var(--accent-wash);
+  transform: translateY(-2px);
+  border-color: rgba(205, 176, 255, 0.92);
+  background: linear-gradient(180deg, #382253 0%, #1b1129 100%);
   color: var(--violet-200);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 4px 0 #08060c,
+    0 10px 24px rgba(0, 0, 0, 0.38),
+    0 0 24px rgba(139, 92, 246, 0.24);
 }
 
 .model-detail__back:focus-visible {
@@ -1148,11 +1156,54 @@ a.social-card:hover {
   box-shadow: var(--focus-ring);
 }
 
+.model-detail__back-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  line-height: 1.1;
+}
+
+.model-detail__back-kicker {
+  color: rgba(220, 205, 245, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.model-detail__back-title {
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-snug);
+  text-shadow: 0 0 14px rgba(190, 150, 255, 0.2);
+}
+
+.model-detail__back-icon-wrap {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgba(188, 146, 255, 0.56);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #321c50, #100b18 76%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 14px rgba(139, 92, 246, 0.2);
+  color: #d8c0ff;
+  transition: border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
 .model-detail__back-icon {
   display: block;
-  width: 1rem;
-  height: 1rem;
-  flex: none;
+  width: 1.2rem;
+  height: 1.2rem;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -1163,6 +1214,15 @@ a.social-card:hover {
 
 .model-detail__back:hover .model-detail__back-icon {
   transform: translateX(-2px);
+}
+
+.model-detail__back:hover .model-detail__back-icon-wrap {
+  transform: translateX(-2px);
+  border-color: rgba(220, 199, 255, 0.92);
+  background: linear-gradient(145deg, #4b2b70, #1a1027 76%);
+  color: #f0e7ff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 18px rgba(139, 92, 246, 0.38);
 }
 
 .model-detail__head {
