@@ -139,6 +139,12 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--black);
+  background-image:
+    radial-gradient(ellipse 86% 54% at 50% 0%, rgba(66, 34, 112, 0.17), transparent 76%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: auto, 68px 68px, 68px 68px;
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-body);
   font-size: var(--fs-base);

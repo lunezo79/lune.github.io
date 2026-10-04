@@ -82,7 +82,7 @@
   </header>
 
   <main id="main">
-    <section class="hero" id="top" data-hero>
+    <section class="hero" id="top" data-hero data-page-view="top">
       <div class="hero__bg" aria-hidden="true">
         <div class="hero__grid"></div>
         <div class="hero__rings"></div>
@@ -91,38 +91,65 @@
       </div>
 
       <div class="container hero__inner">
-        <p class="pill" data-reveal>
-          <span class="pill__dot"></span>
-          Creating, learning, and exploring
-        </p>
-        <h1 class="hero__title" data-reveal>
-          Hi, I'm Lune.
-          <em>
-            I shape <span class="text-gradient">visual worlds</span> and the
-            interfaces within them.
-          </em>
-        </h1>
-        <p class="hero__lede" data-reveal>
-          UI designer and 3D modeler, currently learning scripting and animation.
-          I enjoy making thoughtful interfaces, building detailed models, and
-          bringing ideas to life one experiment at a time.
-        </p>
-        <div class="hero__actions" data-reveal>
-          <a class="btn btn--primary" href="#three-d">
-            Explore my work
-            <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="m13 6 6 6-6 6" />
-            </svg>
-          </a>
-          <a class="btn btn--ghost" href="#about">Find me online</a>
+        <div class="hero__layout">
+          <div class="hero__copy">
+            <p class="pill" data-reveal>
+              <span class="pill__dot"></span>
+              Creating, learning, and exploring
+            </p>
+            <h1 class="hero__title" data-reveal>
+              Hi, I'm Lune.
+              <em>
+                I shape <span class="text-gradient">visual worlds</span> and the
+                interfaces within them.
+              </em>
+            </h1>
+            <p class="hero__lede" data-reveal>
+              UI designer and 3D modeler, currently learning scripting and animation.
+              I enjoy making thoughtful interfaces, building detailed models, and
+              bringing ideas to life one experiment at a time.
+            </p>
+            <div class="hero__actions" data-reveal>
+              <a class="btn btn--primary" href="#three-d">
+                Explore my work
+                <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m13 6 6 6-6 6" />
+                </svg>
+              </a>
+              <a class="btn btn--ghost" href="#about">Find me online</a>
+            </div>
+          </div>
+
+          <article class="discord-card discord-card--hero" data-discord-card data-user-id="762121502698242054" data-reveal>
+            <div class="discord-card__heading">
+              <div class="discord-card__identity">
+                <span class="discord-card__avatar" data-discord-avatar aria-hidden="true">
+                  <img data-discord-avatar-image alt="" hidden />
+                  <span class="discord-card__avatar-fallback" data-discord-avatar-fallback>L</span>
+                </span>
+                <div>
+                  <p class="discord-card__label">Discord presence</p>
+                  <h2 class="discord-card__name" data-discord-name>Lune</h2>
+                </div>
+              </div>
+              <span class="discord-card__status">
+                <span class="discord-card__status-dot" data-discord-dot aria-hidden="true"></span>
+                <span data-discord-status aria-live="polite">Connecting to Discord…</span>
+              </span>
+            </div>
+            <p class="discord-card__activity" data-discord-activity aria-live="polite">
+              Loading current activity…
+            </p>
+            <p class="discord-card__note">
+              Live Discord activity
+            </p>
+          </article>
         </div>
       </div>
-
-      <span class="hero__scroll" aria-hidden="true"></span>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
+    <section class="section" id="about" aria-labelledby="about-title" data-page-view="about">
       <div class="container">
         <div class="section-head" data-reveal>
           <p class="eyebrow">About me</p>
@@ -161,29 +188,10 @@
           </div>
         </div>
 
-        <article class="discord-card" data-discord-card data-user-id="762121502698242054" data-reveal>
-          <div class="discord-card__heading">
-            <div>
-              <p class="eyebrow">Discord activity</p>
-              <h3 class="discord-card__name" data-discord-name>Lune</h3>
-            </div>
-            <span class="discord-card__status">
-              <span class="discord-card__status-dot" data-discord-dot aria-hidden="true"></span>
-              <span data-discord-status aria-live="polite">Connecting to Discord…</span>
-            </span>
-          </div>
-          <p class="discord-card__activity" data-discord-activity aria-live="polite">
-            Loading current activity…
-          </p>
-          <p class="discord-card__note">
-            Live presence provided by Lanyard. Activity appears when Discord
-            shares it publicly.
-          </p>
-        </article>
       </div>
     </section>
 
-    <section class="section" id="three-d" aria-labelledby="three-d-title">
+    <section class="section" id="three-d" aria-labelledby="three-d-title" data-page-view="three-d">
       <div class="container">
         <div class="section-head" data-reveal>
           <p class="eyebrow">Selected work · 3D</p>
@@ -243,7 +251,7 @@
       </div>
     </section>
 
-    <section class="section" id="two-d" aria-labelledby="two-d-title">
+    <section class="section" id="two-d" aria-labelledby="two-d-title" data-page-view="two-d">
       <div class="container">
         <div class="section-head" data-reveal>
           <p class="eyebrow">Selected work · 2D</p>
@@ -304,7 +312,7 @@
       </div>
     </section>
 
-    <section class="section" id="partners" aria-labelledby="partners-title">
+    <section class="section" id="partners" aria-labelledby="partners-title" data-page-view="partners">
       <div class="container">
         <div class="section-head" data-reveal>
           <p class="eyebrow">Partners</p>
@@ -334,7 +342,7 @@
       </div>
     </section>
 
-    <section class="section" id="more" aria-labelledby="more-title">
+    <section class="section" id="more" aria-labelledby="more-title" data-page-view="more">
       <div class="container">
         <div class="section-head" data-reveal>
           <p class="eyebrow">More about me</p>
@@ -350,7 +358,7 @@
       </div>
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-title">
+    <section class="section" id="contact" aria-labelledby="contact-title" data-page-view="more">
       <div class="container">
         <div class="contact__card" data-reveal>
           <div class="contact__inner">

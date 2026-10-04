@@ -43,6 +43,7 @@ export function initDiscordActivity() {
       const data = result.data;
       const displayName = data.discord_user?.global_name || data.discord_user?.username;
       if (displayName) name.textContent = displayName;
+      updateAvatar(card, data.discord_user, displayName);
 
       const discordStatus = data.discord_status || "offline";
       status.textContent = STATUS_LABELS[discordStatus] || "Status unavailable";
@@ -55,6 +56,26 @@ export function initDiscordActivity() {
 
   void update();
   window.setInterval(() => void update(), REFRESH_INTERVAL);
+}
+
+function updateAvatar(card, user, displayName) {
+  const avatar = card.querySelector("[data-discord-avatar]");
+  const image = avatar?.querySelector("[data-discord-avatar-image]");
+  const fallback = avatar?.querySelector("[data-discord-avatar-fallback]");
+  if (!image || !fallback) return;
+
+  fallback.textContent = displayName?.[0]?.toUpperCase() || "L";
+  image.hidden = true;
+  image.onerror = () => {
+    image.hidden = true;
+    fallback.textContent = displayName?.[0]?.toUpperCase() || "L";
+  };
+
+  if (!user?.avatar) return;
+  const format = user.avatar.startsWith("a_") ? "gif" : "webp";
+  image.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${format}?size=128`;
+  image.hidden = false;
+  fallback.textContent = "";
 }
 
 function getActivityText(data) {

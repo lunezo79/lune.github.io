@@ -24,6 +24,7 @@ presence.
 - Zero runtime dependencies and no build pipeline
 - Responsive layout that works from small phones up to wide desktops
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
+- Hash-addressable page views keep the home, About, portfolio, and partners separate
 - Expandable project cards for detailed 2D and 3D case studies
 - Live Discord status and activity through the public Lanyard API
 - Deployed automatically on every push to `main` via GitHub Pages

@@ -1,6 +1,5 @@
 /**
- * Navigation: sticky-header state, the mobile drawer, smooth in-page
- * scrolling and the scroll spy that highlights the current section.
+ * Navigation: sticky-header state, the mobile drawer, and page-view routing.
  * Everything is driven by data attributes so the markup stays declarative.
  */
 
@@ -17,8 +16,7 @@ export function initNav() {
 
   initScrollState(header);
   initDrawer(header);
-  initScrollSpy();
-  initSmoothScroll();
+  initPageViews(header);
 }
 
 /** Adds `is-scrolled` once the page has moved off the top. */
@@ -91,56 +89,61 @@ function initDrawer(header) {
   });
 }
 
-/** Highlights the nav link for whichever section owns the viewport middle. */
-function initScrollSpy() {
+/** Switches between independently scrollable, hash-addressable page views. */
+function initPageViews(header) {
   const links = Array.from(document.querySelectorAll("[data-nav-link]"));
-  if (!links.length || !("IntersectionObserver" in window)) return;
+  const views = Array.from(document.querySelectorAll("[data-page-view]"));
+  if (!views.length) return;
 
-  const sections = links
-    .map((link) => {
-      const href = link.getAttribute("href");
-      return href && href.startsWith("#") ? document.querySelector(href) : null;
-    })
-    .filter(Boolean);
+  const showView = (id, behavior = "smooth") => {
+    const target = document.getElementById(id);
+    const activeView = target?.dataset.pageView || "top";
 
-  if (!sections.length) return;
+    views.forEach((view) => {
+      view.hidden = view.dataset.pageView !== activeView;
+    });
 
-  const setActive = (id) => {
     links.forEach((link) => {
-      link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+      const isActive = link.getAttribute("href") === `#${activeView}`;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    header.dataset.activeView = activeView;
+    window.scrollTo({
+      top: 0,
+      behavior: behavior === "auto" || prefersReducedMotion() ? "auto" : "smooth",
     });
   };
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActive(entry.target.id);
-      });
-    },
-    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
-  );
+  const showCurrentView = () => {
+    const id = window.location.hash.slice(1) || "top";
+    const target = document.getElementById(id);
+    if (id !== "top" && !target?.dataset.pageView) return;
+    showView(id, "auto");
+  };
+  showCurrentView();
 
-  sections.forEach((section) => observer.observe(section));
-}
-
-/** Smooth in-page navigation that respects reduced-motion preferences. */
-function initSmoothScroll() {
   document.addEventListener("click", (event) => {
     const link = event.target.closest('a[href^="#"]');
     if (!link) return;
 
-    const id = link.getAttribute("href");
-    if (!id || id === "#") return;
-
-    const target = document.querySelector(id);
-    if (!target) return;
+    const id = link.getAttribute("href").slice(1);
+    const target = document.getElementById(id);
+    if (!target?.dataset.pageView) return;
 
     event.preventDefault();
-    target.scrollIntoView({
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-      block: "start",
-    });
 
-    history.replaceState(null, "", id);
+    if (window.location.hash !== `#${id}`) {
+      history.pushState(null, "", `#${id}`);
+    }
+    showView(id);
   });
+
+  window.addEventListener("popstate", showCurrentView);
+  window.addEventListener("hashchange", showCurrentView);
 }
