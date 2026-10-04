@@ -947,6 +947,16 @@ a.social-card:hover {
   list-style: none;
 }
 
+.portfolio-card__image {
+  width: calc(100% + 2 * var(--space-6));
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1;
+  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-3);
+  object-fit: cover;
+  background-color: var(--surface-raised);
+}
+
 .portfolio-card summary::-webkit-details-marker {
   display: none;
 }
