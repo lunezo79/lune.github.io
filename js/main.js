@@ -4,7 +4,6 @@
  */
 
 import { initFooter } from "./footer.js";
-import { initGalleries } from "./galleries.js";
 import { initHero } from "./hero.js";
 import { initNav } from "./nav.js";
 import { initDiscordActivity } from "./discord.js";
@@ -15,7 +14,6 @@ import { initToTop } from "./to-top.js";
 function init() {
   initNav();
   initDiscordActivity();
-  initGalleries();
   initReveal();
   initHero();
   initToTop();

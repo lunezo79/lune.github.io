@@ -95,7 +95,7 @@ function initPageViews(header) {
   const views = Array.from(document.querySelectorAll("[data-page-view]"));
   if (!views.length) return;
 
-  const showView = (id, behavior = "smooth", animate = true) => {
+  const showView = (id, animate = true) => {
     const target = document.getElementById(id);
     const activeView = target?.dataset.pageView || "top";
 
@@ -130,7 +130,7 @@ function initPageViews(header) {
     header.dataset.activeView = activeView;
     window.scrollTo({
       top: 0,
-      behavior: behavior === "auto" || prefersReducedMotion() ? "auto" : "smooth",
+      behavior: "auto",
     });
   };
 
@@ -138,7 +138,7 @@ function initPageViews(header) {
     const id = window.location.hash.slice(1) || "top";
     const target = document.getElementById(id);
     if (id !== "top" && !target?.dataset.pageView) return;
-    showView(id, "auto", false);
+    showView(id, false);
   };
   showCurrentView();
 
