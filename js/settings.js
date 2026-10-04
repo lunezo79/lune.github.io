@@ -16,6 +16,29 @@ export function initSettings() {
   const status = document.querySelector("[data-settings-status]");
   if (!settings || !themeSelect || !musicToggle || !soundsToggle || !status) return;
 
+  let settingsCloseTimer = null;
+  settings.addEventListener("pointerenter", () => {
+    window.clearTimeout(settingsCloseTimer);
+    settingsCloseTimer = null;
+  });
+  settings.addEventListener("pointerleave", (event) => {
+    if (event.pointerType === "mouse") {
+      settingsCloseTimer = window.setTimeout(() => {
+        settings.open = false;
+        settingsCloseTimer = null;
+      }, 150);
+    }
+  });
+  settings.addEventListener("focusout", (event) => {
+    if (!settings.contains(event.relatedTarget)) settings.open = false;
+  });
+  settings.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && settings.open) {
+      settings.open = false;
+      settings.querySelector("summary").focus();
+    }
+  });
+
   const root = document.documentElement;
   const AudioContextConstructor = window.AudioContext;
   let audioContext = null;
