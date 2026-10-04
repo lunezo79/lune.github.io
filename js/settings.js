@@ -16,17 +16,17 @@ export function initSettings() {
   const status = document.querySelector("[data-settings-status]");
   if (!settings || !themeSelect || !musicToggle || !soundsToggle || !status) return;
 
-  let settingsCloseTimer = null;
-  settings.addEventListener("pointerenter", () => {
-    window.clearTimeout(settingsCloseTimer);
-    settingsCloseTimer = null;
+  settings.addEventListener("pointerenter", (event) => {
+    if (event.pointerType !== "mouse") return;
+    settings.open = true;
   });
   settings.addEventListener("pointerleave", (event) => {
-    if (event.pointerType === "mouse") {
-      settingsCloseTimer = window.setTimeout(() => {
-        settings.open = false;
-        settingsCloseTimer = null;
-      }, 150);
+    if (event.pointerType === "mouse") settings.open = false;
+  });
+  settings.querySelector("summary").addEventListener("click", (event) => {
+    if (event.detail && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      event.preventDefault();
+      settings.open = true;
     }
   });
   settings.addEventListener("focusout", (event) => {

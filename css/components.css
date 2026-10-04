@@ -35,11 +35,13 @@
 
 .site-header__tools {
   position: absolute;
+  top: 50%;
   right: var(--space-6);
   display: flex;
   flex: none;
   align-items: center;
   gap: var(--space-3);
+  transform: translateY(-50%);
 }
 
 .site-settings {
@@ -88,7 +90,7 @@
 
 .site-settings__panel {
   position: absolute;
-  top: calc(100% + var(--space-3));
+  top: 100%;
   right: 0;
   z-index: calc(var(--z-header) + 1);
   display: grid;
@@ -746,13 +748,6 @@
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
-  }
-
-  .site-settings__panel {
-    position: fixed;
-    top: calc(var(--header-height) + var(--space-2));
-    right: var(--space-4);
-    width: min(20rem, calc(100vw - 2rem));
   }
 
   .nav-toggle {
