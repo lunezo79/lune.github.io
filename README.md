@@ -165,7 +165,6 @@ Personal content lives in `index.html`. Update these areas as work and links are
 ready:
 
 - [ ] Replace the starter content in the 2D and 3D project cards
-- [ ] Add Telegram and Roblox profile links
 - [ ] Add partner names and collaboration descriptions
 - [ ] Add any additional content to the More about me section
 - [ ] Change accent colours in `css/tokens.css`
@@ -175,7 +174,6 @@ ready:
 ## Roadmap
 
 - [ ] Add finished 2D and 3D portfolio projects
-- [ ] Add Telegram and Roblox profile URLs
 - [ ] Add an Open Graph preview image
 
 ## Contributing
