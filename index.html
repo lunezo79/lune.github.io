@@ -45,22 +45,61 @@
 
   <header class="site-header" data-header>
     <div class="container site-header__inner">
-      <a class="brand" href="#top" aria-label="Lune — back to top">
-        <img
-          class="brand__mark"
-          src="assets/icons/favicon.svg"
-          alt=""
-          width="32"
-          height="32"
-          decoding="async"
-        />
-        <span class="brand__name">lune<span class="brand__dot">.</span></span>
-      </a>
+      <div class="site-header__start">
+        <a class="brand" href="#top" aria-label="Lune — back to top">
+          <img
+            class="brand__mark"
+            src="assets/icons/favicon.svg"
+            alt=""
+            width="32"
+            height="32"
+            decoding="async"
+          />
+          <span class="brand__name">lune<span class="brand__dot">.</span></span>
+        </a>
+
+        <span class="moon-phase" data-moon-phase role="img" aria-label="Moon phase">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle class="moon-phase__disc" cx="12" cy="12" r="10" />
+            <path class="moon-phase__light" data-moon-light />
+          </svg>
+        </span>
+
+        <details class="site-settings" data-settings>
+          <summary class="site-settings__toggle">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+              <path d="m19.4 15 .1.1a1.8 1.8 0 0 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 0 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 0 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3h-.2a1.8 1.8 0 0 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 0 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 0 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 0 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 0 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z" />
+            </svg>
+            <span>Settings</span>
+          </summary>
+          <div class="site-settings__panel">
+            <label class="site-settings__label" for="theme-select">Colour theme</label>
+            <select id="theme-select" class="site-settings__select" data-theme-select>
+              <option value="default">Midnight violet · Default</option>
+              <option value="ocean">Ocean blue</option>
+              <option value="forest">Forest green</option>
+              <option value="rose">Rose pink</option>
+              <option value="amber">Amber glow</option>
+            </select>
+            <button class="site-settings__audio" type="button" data-music-toggle aria-pressed="false">
+              Play calm lo-fi
+            </button>
+            <button class="site-settings__audio" type="button" data-sounds-toggle aria-pressed="false">
+              Enable UI sounds
+            </button>
+            <p class="site-settings__status" data-settings-status aria-live="polite">
+              Music and UI sounds are off.
+            </p>
+          </div>
+        </details>
+      </div>
 
       <nav class="nav" id="primary-nav" data-nav aria-label="Primary">
         <ul class="nav__list">
           <li><a class="nav__link" href="#about" data-nav-link>About me</a></li>
           <li><a class="nav__link" href="#three-d" data-nav-link>3D</a></li>
+          <li><a class="nav__link" href="#partners" data-nav-link>Partners</a></li>
           <li><a class="nav__link" href="#contact" data-nav-link>Contact</a></li>
         </ul>
       </nav>
@@ -313,10 +352,27 @@
           </article>
 
         </div>
+
+        <aside class="model-challenge" aria-labelledby="model-challenge-title" data-reveal>
+          <div>
+            <p class="eyebrow">Community challenge</p>
+            <h3 class="model-challenge__title" id="model-challenge-title">Design a UI for a 3D model</h3>
+            <p class="model-challenge__copy">
+              Pick one of the models and imagine an interface for it. Share your
+              concept with the ShaxCorp community; standout ideas may be featured here.
+            </p>
+          </div>
+          <a
+            class="portfolio-card__action"
+            href="https://discord.gg/gHh6jzJRxp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Join ShaxCorp to share an idea ↗</a>
+        </aside>
       </div>
     </section>
 
-    <section class="section model-detail" id="traffic-cone" aria-labelledby="traffic-cone-title" data-page-view="traffic-cone">
+    <section class="section model-detail" id="traffic-cone" aria-labelledby="traffic-cone-title" data-page-view="traffic-cone" data-project-accent="cone">
       <div class="container">
         <a class="model-detail__back" href="#three-d">
           <span class="model-detail__back-icon-wrap" aria-hidden="true">
@@ -373,7 +429,7 @@
       </div>
     </section>
 
-    <section class="section model-detail" id="futuristic-scythe" aria-labelledby="futuristic-scythe-title" data-page-view="futuristic-scythe">
+    <section class="section model-detail" id="futuristic-scythe" aria-labelledby="futuristic-scythe-title" data-page-view="futuristic-scythe" data-project-accent="scythe">
       <div class="container">
         <a class="model-detail__back" href="#three-d">
           <span class="model-detail__back-icon-wrap" aria-hidden="true">
@@ -430,7 +486,7 @@
       </div>
     </section>
 
-    <section class="section model-detail" id="karambit" aria-labelledby="karambit-title" data-page-view="karambit">
+    <section class="section model-detail" id="karambit" aria-labelledby="karambit-title" data-page-view="karambit" data-project-accent="karambit">
       <div class="container">
         <a class="model-detail__back" href="#three-d">
           <span class="model-detail__back-icon-wrap" aria-hidden="true">
@@ -483,6 +539,33 @@
               <div><dt>Triangles</dt><dd>3.3k</dd></div>
             </dl>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="partners" aria-labelledby="partners-title" data-page-view="partners">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Partners</p>
+          <h2 class="section-title" id="partners-title">Communities that build together.</h2>
+          <p class="section-lede">
+            Find ShaxCorp on Discord and join the community.
+          </p>
+        </div>
+        <div class="partner-grid" data-reveal-group="80">
+          <article class="partner-card" data-reveal>
+            <p class="partner-card__label">Discord community</p>
+            <h3 class="partner-card__title">ShaxCorp</h3>
+            <p class="partner-card__description">
+              A community for sharing ideas, creative work, and model-inspired UI concepts.
+            </p>
+            <a
+              class="portfolio-card__action"
+              href="https://discord.gg/gHh6jzJRxp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Join the server ↗</a>
+          </article>
         </div>
       </div>
     </section>

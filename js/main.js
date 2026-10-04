@@ -9,6 +9,7 @@ import { initNav } from "./nav.js";
 import { initDiscordActivity } from "./discord.js";
 import { initProgress } from "./progress.js";
 import { initReveal } from "./reveal.js";
+import { initSettings } from "./settings.js";
 import { initToTop } from "./to-top.js";
 
 function init() {
@@ -19,6 +20,7 @@ function init() {
   initToTop();
   initProgress();
   initFooter();
+  initSettings();
 }
 
 if (document.readyState === "loading") {

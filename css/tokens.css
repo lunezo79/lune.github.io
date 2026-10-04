@@ -30,13 +30,14 @@
   --accent: var(--violet-500);
   --accent-bright: var(--violet-400);
   --accent-deep: var(--violet-700);
+  --accent-rgb: 139, 92, 246;
 
   /* --- Translucent helpers ----------------------------------------------- */
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.16);
-  --border-accent: rgba(139, 92, 246, 0.35);
-  --accent-wash: rgba(139, 92, 246, 0.12);
-  --accent-wash-strong: rgba(139, 92, 246, 0.22);
+  --border-accent: rgba(var(--accent-rgb), 0.35);
+  --accent-wash: rgba(var(--accent-rgb), 0.12);
+  --accent-wash-strong: rgba(var(--accent-rgb), 0.22);
   --overlay: rgba(8, 7, 11, 0.72);
 
   /* --- Typography -------------------------------------------------------- */
@@ -97,8 +98,8 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 12px 32px -12px rgba(0, 0, 0, 0.7);
   --shadow-lg: 0 28px 60px -20px rgba(0, 0, 0, 0.85);
-  --glow-accent: 0 0 0 1px var(--border-accent), 0 18px 60px -24px rgba(139, 92, 246, 0.65);
-  --glow-text: 0 0 32px rgba(139, 92, 246, 0.45);
+  --glow-accent: 0 0 0 1px var(--border-accent), 0 18px 60px -24px rgba(var(--accent-rgb), 0.65);
+  --glow-text: 0 0 32px rgba(var(--accent-rgb), 0.45);
 
   /* --- Motion ------------------------------------------------------------ */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -114,6 +115,111 @@
   --z-drawer: 200;
 
   --focus-ring: 0 0 0 2px var(--black), 0 0 0 4px var(--violet-400);
+}
+
+[data-theme="ocean"] {
+  --violet-100: #e0f2fe;
+  --violet-200: #bae6fd;
+  --violet-300: #7dd3fc;
+  --violet-400: #38bdf8;
+  --violet-500: #0ea5e9;
+  --violet-600: #0284c7;
+  --violet-700: #0369a1;
+  --violet-900: #0c4a6e;
+  --accent-rgb: 14, 165, 233;
+  --border-accent: rgba(14, 165, 233, 0.35);
+  --accent-wash: rgba(14, 165, 233, 0.12);
+  --accent-wash-strong: rgba(14, 165, 233, 0.22);
+}
+
+[data-theme="forest"] {
+  --violet-100: #dcfce7;
+  --violet-200: #bbf7d0;
+  --violet-300: #86efac;
+  --violet-400: #4ade80;
+  --violet-500: #22c55e;
+  --violet-600: #16a34a;
+  --violet-700: #15803d;
+  --violet-900: #14532d;
+  --accent-rgb: 34, 197, 94;
+  --border-accent: rgba(34, 197, 94, 0.35);
+  --accent-wash: rgba(34, 197, 94, 0.12);
+  --accent-wash-strong: rgba(34, 197, 94, 0.22);
+}
+
+[data-theme="rose"] {
+  --violet-100: #ffe4e6;
+  --violet-200: #fecdd3;
+  --violet-300: #fda4af;
+  --violet-400: #fb7185;
+  --violet-500: #f43f5e;
+  --violet-600: #e11d48;
+  --violet-700: #be123c;
+  --violet-900: #881337;
+  --accent-rgb: 244, 63, 94;
+  --border-accent: rgba(244, 63, 94, 0.35);
+  --accent-wash: rgba(244, 63, 94, 0.12);
+  --accent-wash-strong: rgba(244, 63, 94, 0.22);
+}
+
+[data-theme="amber"] {
+  --violet-100: #fef3c7;
+  --violet-200: #fde68a;
+  --violet-300: #fcd34d;
+  --violet-400: #fbbf24;
+  --violet-500: #f59e0b;
+  --violet-600: #d97706;
+  --violet-700: #b45309;
+  --violet-900: #78350f;
+  --accent-rgb: 245, 158, 11;
+  --border-accent: rgba(245, 158, 11, 0.35);
+  --accent-wash: rgba(245, 158, 11, 0.12);
+  --accent-wash-strong: rgba(245, 158, 11, 0.22);
+}
+
+[data-project-accent="scythe"] {
+  --violet-100: #fff1f5;
+  --violet-200: #ffd0df;
+  --violet-300: #ffacc5;
+  --violet-400: #ff86ad;
+  --violet-500: #f45b91;
+  --violet-600: #df3f78;
+  --violet-700: #bd2d63;
+  --violet-900: #781a42;
+  --accent-rgb: 244, 91, 145;
+  --border-accent: rgba(244, 91, 145, 0.35);
+  --accent-wash: rgba(244, 91, 145, 0.12);
+  --accent-wash-strong: rgba(244, 91, 145, 0.22);
+}
+
+[data-project-accent="karambit"] {
+  --violet-100: #eff6ff;
+  --violet-200: #dbeafe;
+  --violet-300: #bfdbfe;
+  --violet-400: #93c5fd;
+  --violet-500: #60a5fa;
+  --violet-600: #3b82f6;
+  --violet-700: #2563eb;
+  --violet-900: #1e3a8a;
+  --accent-rgb: 96, 165, 250;
+  --border-accent: rgba(96, 165, 250, 0.35);
+  --accent-wash: rgba(96, 165, 250, 0.12);
+  --accent-wash-strong: rgba(96, 165, 250, 0.22);
+}
+
+[data-project-accent="cone"] {
+  --violet-100: #fff7ed;
+  --violet-200: #ffedd5;
+  --violet-300: #fed7aa;
+  --violet-400: #fdba74;
+  --violet-500: #fb923c;
+  --violet-600: #f97316;
+  --violet-700: #c2410c;
+  --violet-900: #7c2d12;
+  --accent-rgb: 249, 115, 22;
+  --border-accent: rgba(249, 115, 22, 0.35);
+  --accent-wash: rgba(249, 115, 22, 0.12);
+  --accent-wash-strong: rgba(249, 115, 22, 0.22);
 }
 
 /* ==========================================================================
@@ -140,7 +246,7 @@ body {
   min-height: 100vh;
   background-color: var(--black);
   background-image:
-    radial-gradient(ellipse 86% 54% at 50% 0%, rgba(66, 34, 112, 0.17), transparent 76%),
+    radial-gradient(ellipse 86% 54% at 50% 0%, rgba(var(--accent-rgb), 0.17), transparent 76%),
     linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
   background-size: auto, 68px 68px, 68px 68px;
