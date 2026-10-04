@@ -26,7 +26,7 @@ Discord presence.
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
 - Hash-addressable, viewport-isolated page views keep the home, About, portfolio, and partners separate
 - Expandable 2D, 3D, and VFX project cards and dedicated detail pages for case studies
-- Traffic cone project detail page with a render and mesh statistics
+- Traffic cone and futuristic scythe project detail pages with renders and design details
 - Matching black-and-purple social icons and quick animated page transitions
 - Live Discord status and activity through the public Lanyard API
 - Deployed automatically on every push to `main` via GitHub Pages
