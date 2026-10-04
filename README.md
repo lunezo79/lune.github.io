@@ -26,6 +26,7 @@ presence.
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
 - Hash-addressable page views keep the home, About, portfolio, and partners separate
 - Expandable project cards for detailed 2D and 3D case studies
+- Sliding render and wireframe gallery for the traffic cone model
 - Matching black-and-purple social icons and quick animated page transitions
 - Live Discord status and activity through the public Lanyard API
 - Deployed automatically on every push to `main` via GitHub Pages
@@ -60,6 +61,7 @@ lune.github.io/
 ├── js/
 │   ├── main.js         # Initializes page behavior
 │   ├── discord.js      # Live Discord presence
+│   ├── galleries.js    # Keyboard-accessible sliding model galleries
 │   └── nav.js          # Navigation and scroll behavior
 ├── assets/
 │   ├── images/         # Portfolio artwork
