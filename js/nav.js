@@ -22,11 +22,16 @@ export function initNav() {
 /** Adds `is-scrolled` once the page has moved off the top. */
 function initScrollState(header) {
   const apply = rafThrottle(() => {
-    header.classList.toggle("is-scrolled", window.scrollY > SCROLL_THRESHOLD);
+    const activeView = document.querySelector("[data-page-view]:not([hidden])");
+    const scrollTop = activeView?.scrollTop || window.scrollY;
+    header.classList.toggle("is-scrolled", scrollTop > SCROLL_THRESHOLD);
   });
 
   apply();
   window.addEventListener("scroll", apply, { passive: true });
+  document.querySelectorAll("[data-page-view]").forEach((view) => {
+    view.addEventListener("scroll", apply, { passive: true });
+  });
 }
 
 /** Mobile panel: open/close, focus trap, scroll lock, Escape to dismiss. */
@@ -95,6 +100,10 @@ function initPageViews(header) {
   const views = Array.from(document.querySelectorAll("[data-page-view]"));
   if (!views.length) return;
 
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
   const showView = (id, animate = true) => {
     const target = document.getElementById(id);
     const activeView = target?.dataset.pageView || "top";
@@ -128,10 +137,12 @@ function initPageViews(header) {
     });
 
     header.dataset.activeView = activeView;
+    target?.scrollTo({ top: 0, behavior: "auto" });
     window.scrollTo({
       top: 0,
       behavior: "auto",
     });
+    document.dispatchEvent(new CustomEvent("pageviewchange", { detail: { activeView } }));
   };
 
   const showCurrentView = () => {

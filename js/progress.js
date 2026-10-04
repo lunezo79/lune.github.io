@@ -10,13 +10,19 @@ export function initProgress() {
   if (!bar) return;
 
   const update = rafThrottle(() => {
-    const doc = document.documentElement;
-    const scrollable = doc.scrollHeight - doc.clientHeight;
-    const ratio = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+    const activeView = document.querySelector("[data-page-view]:not([hidden])");
+    if (!activeView) return;
+
+    const scrollable = activeView.scrollHeight - activeView.clientHeight;
+    const ratio = scrollable > 0 ? Math.min(activeView.scrollTop / scrollable, 1) : 0;
     bar.style.transform = `scaleX(${ratio.toFixed(4)})`;
   });
 
   update();
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update, { passive: true });
+  document.querySelectorAll("[data-page-view]").forEach((view) => {
+    view.addEventListener("scroll", update, { passive: true });
+  });
+  document.addEventListener("pageviewchange", update);
 }

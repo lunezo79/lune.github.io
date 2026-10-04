@@ -24,7 +24,7 @@ presence.
 - Zero runtime dependencies and no build pipeline
 - Responsive layout that works from small phones up to wide desktops
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
-- Hash-addressable page views keep the home, About, portfolio, and partners separate
+- Hash-addressable, viewport-isolated page views keep the home, About, portfolio, and partners separate
 - Expandable project cards and dedicated detail pages for portfolio case studies
 - Traffic cone project detail page with a render and mesh statistics
 - Matching black-and-purple social icons and quick animated page transitions

@@ -742,9 +742,28 @@
   display: none !important;
 }
 
+body:has([data-page-view]) {
+  overflow: hidden;
+}
+
+[data-page-view]:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-base);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: calc(var(--space-24) + env(safe-area-inset-bottom));
+}
+
 .section[data-page-view] {
-  min-height: 100svh;
+  min-height: 100%;
   padding-block-start: calc(var(--header-height) + var(--space-16));
+}
+
+.hero[data-page-view] {
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* --- Portfolio sections ------------------------------------------------- */
