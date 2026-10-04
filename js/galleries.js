@@ -12,9 +12,18 @@ export function initGalleries() {
     let index = 0;
 
     const update = () => {
-      track.style.transform = `translate3d(-${index * viewport.clientWidth}px, 0, 0)`;
+      const frameWidth = viewport.getBoundingClientRect().width;
+      if (!frameWidth) return;
+
+      slides.forEach((slide) => {
+        slide.style.flexBasis = `${frameWidth}px`;
+        slide.style.width = `${frameWidth}px`;
+      });
+      track.style.width = `${frameWidth * slides.length}px`;
+      track.style.transform = `translate3d(-${index * frameWidth}px, 0, 0)`;
       label.textContent = slides[index].dataset.label || `Image ${index + 1}`;
-      gallery.setAttribute("aria-label", `Traffic cone model images: ${label.textContent}, image ${index + 1} of ${slides.length}`);
+      const galleryName = gallery.dataset.galleryName || "Project images";
+      gallery.setAttribute("aria-label", `${galleryName}: ${label.textContent}, image ${index + 1} of ${slides.length}`);
     };
 
     const move = (direction) => {
@@ -35,7 +44,17 @@ export function initGalleries() {
       }
     });
 
-    window.addEventListener("resize", update, { passive: true });
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(update).observe(viewport);
+    } else {
+      window.addEventListener("resize", update, { passive: true });
+    }
+
+    gallery.addEventListener("click", (event) => {
+      if (event.target.closest("[data-gallery-previous], [data-gallery-next]")) {
+        event.stopPropagation();
+      }
+    });
     update();
   });
 }

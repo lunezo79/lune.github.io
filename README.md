@@ -25,8 +25,8 @@ presence.
 - Responsive layout that works from small phones up to wide desktops
 - Accessible markup (semantic HTML, keyboard-navigable, readable contrast)
 - Hash-addressable page views keep the home, About, portfolio, and partners separate
-- Expandable project cards for detailed 2D and 3D case studies
-- Sliding render and wireframe gallery for the traffic cone model
+- Expandable project cards and dedicated detail pages for portfolio case studies
+- Sliding render and wireframe gallery with mesh statistics for the traffic cone model
 - Matching black-and-purple social icons and quick animated page transitions
 - Live Discord status and activity through the public Lanyard API
 - Deployed automatically on every push to `main` via GitHub Pages
@@ -165,7 +165,7 @@ repository root and configure it under **Settings → Pages → Custom domain**.
 Personal content lives in `index.html`. Update these areas as work and links are
 ready:
 
-- [ ] Replace the starter content in the expandable 2D and 3D project cards
+- [ ] Replace the starter content in the 2D and 3D project cards
 - [ ] Add Telegram and Roblox profile links
 - [ ] Add partner names and collaboration descriptions
 - [ ] Add any additional content to the More about me section
